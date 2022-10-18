@@ -1,48 +1,34 @@
 package stus.content;
-
-import arc.graphics.*;
-import arc.struct.*;
-//import stus.world.blocks.campaning.*;
-//import stus.world.blocks.distribution.*;
-//import stus.world.blocks.power.*;
-//import stus.world.blocks.production.*;
-//import stus.world.blocks.storage.*;
-//import stus.graphics.*;
-//import stus.world.blocks.defence.*;
-import mindustry.entities.bullet.*;
-import mindustry.entities.part.*;
-import mindustry.entities.pattern.*;
-import mindustry.gen.*;
-import mindustry.type.*;
-import mindustry.type.unit.*;
+import mindustry.content.Fx;
+import mindustry.content.UnitTypes;
+import mindustry.entities.effect.MultiEffect;
+import mindustry.graphics.Pal;
+import mindustry.type.Category;
 import mindustry.world.*;
-import mindustry.content.*;
-import mindustry.graphics.*;
-import mindustry.world.blocks.payloads.*;
-import mindustry.world.meta.*;
-import mindustry.world.draw.*;
-import mindustry.world.blocks.units.*;
-import mindustry.world.blocks.power.*;
-import mindustry.world.blocks.defense.*;
-import mindustry.world.blocks.production.*;
+import mindustry.world.blocks.defense.Wall;
 import mindustry.world.blocks.environment.*;
-import mindustry.world.blocks.distribution.*;
-import mindustry.world.blocks.defense.turrets.*;
-import static mindustry.type.ItemStack.*;
+import mindustry.world.blocks.power.ConsumeGenerator;
+import mindustry.world.blocks.production.BurstDrill;
+import mindustry.world.blocks.storage.CoreBlock;
+import mindustry.world.draw.DrawMulti;
+import mindustry.world.draw.DrawRegion;
+import mindustry.world.meta.BuildVisibility;
+import mindustry.world.meta.Env;
+
+import static mindustry.type.ItemStack.with;
+
 
 public class StuasutBlocks {
     public static Block
 
             //environment
-            gertwall, limestonewall, gertboulder, limestoneboulder, gert, limestone, mercurymud, orezinc, orebarium, orecadmium, orerhenium,
+            gertwall, limestonewall, gert, limestone, mercurymud, orezinc, orebarium, orecadmium, orerhenium, oreantimony,
 
     //defence
-    bariumwall, bariumwalllarge, cadmiumwall, cadmiumwalllarge, rheniumwall, rheniumwalllarge,
-
-    //breackers
+    bariumWall, bariumWallLarge, cadmiumWall, cadmiumWallLarge, rheniumWall, rheniumWallLarge,
 
     //crafting
-    furnace,
+    //furnace,
 
     //production
     zinccrusher,
@@ -51,16 +37,15 @@ public class StuasutBlocks {
     windgenerator, zincbattery, zincbatterylarge, zincnode, zincnodelarge,
 
     //storage
-    dawn,
+    coreDawn;
 
     //distribution
 
 
     //turrets
-    togi, pulse, collapse,
+    //togi, pulse, collapse,
 
     //units
-    dronefabricator;
 
 
     public void load() {
@@ -78,8 +63,109 @@ public class StuasutBlocks {
         mercurymud = new Floor("mercury-mud") {{
             variants = 3;
         }};
+        limestone = new Floor("limestone") {{
+            variants = 3;
+        }};
         orezinc = new OreBlock(StuasutItems.zinc) {{
             oreDefault = true;
         }};
+        orebarium = new OreBlock(StuasutItems.bariumraw) {{
+            oreDefault = true;
+        }};
+        orecadmium = new OreBlock(StuasutItems.cadmiumraw) {{
+            oreDefault = true;
+        }};
+        orerhenium = new OreBlock(StuasutItems.rheniumraw) {{
+            oreDefault = true;
+        }};
+        oreantimony = new OreBlock(StuasutItems.antimonyraw) {{
+            oreDefault = true;
+        }};
+        //defence
+        bariumWall = new Wall("barium-wall"){{
+            requirements(Category.defense, with(StuasutItems.barium, 6));
+            health = 80 * 6;
+            researchCostMultiplier = 0.1f;
+            envDisabled |= Env.scorching;
+        }};
+        bariumWallLarge = new Wall("barium-wall-large"){{
+            requirements(Category.defense, with(StuasutItems.barium, 24));
+            health = 80 * 6 * 2;
+            researchCostMultiplier = 0.1f;
+            envDisabled |= Env.scorching;
+            size = 2;
+        }};
+        cadmiumWall = new Wall("cadmium-wall"){{
+            requirements(Category.defense, with(StuasutItems.cadmium, 6));
+            health = 80 * 10;
+            researchCostMultiplier = 0.1f;
+            envDisabled |= Env.scorching;
+        }};
+        cadmiumWallLarge = new Wall("cadmium-wall-large"){{
+            requirements(Category.defense, with(StuasutItems.cadmium, 24));
+            health = 80 * 8 * 2;
+            researchCostMultiplier = 0.1f;
+            envDisabled |= Env.scorching;
+            size = 2;
+        }};
+        rheniumWall = new Wall("rhenium-wall"){{
+            requirements(Category.defense, with(StuasutItems.rhenium, 6));
+            health = 80 * 10;
+            researchCostMultiplier = 0.1f;
+            envDisabled |= Env.scorching;
+        }};
+        rheniumWallLarge = new Wall("rhenium-wall-large"){{
+            requirements(Category.defense, with(StuasutItems.rhenium, 24));
+            health = 80 * 8 * 2;
+            researchCostMultiplier = 0.1f;
+            envDisabled |= Env.scorching;
+            size = 2;
+        }};
+
+        //crafting
+        //oh shit
+
+        //production
+
+        zinccrusher = new BurstDrill("zinc-crusher"){{
+            requirements(Category.production, with(StuasutItems.zinc, 12, StuasutItems.bariumraw, 6));
+            drillTime = 64f * 5f;
+            size = 2;
+            hasPower = true;
+            tier =2;
+            drillEffect = new MultiEffect(Fx.mineImpact, Fx.drillSteam, Fx.mineImpactWave.wrap(Pal.redLight, 40f));
+            shake = 3;
+            itemCapacity = 10;
+            researchCostMultiplier = 0.5f;
+            fogRadius = 1;
+            consumePower(0.5f / 60f);
+        }};
+
+        //power
+
+        windgenerator = new ConsumeGenerator("wind-generator"){
+            {
+                size = 2;
+                requirements(Category.power, with(StuasutItems.zinc, 20, StuasutItems.bariumraw, 8));
+                powerProduction = 0.5f;
+                drawer = new DrawMulti(new DrawRegion("-rotator"));
+            }};
+
+            //storage
+
+            coreDawn = new CoreBlock("core-shard"){{
+                requirements(Category.effect, BuildVisibility.editorOnly, with(StuasutItems.zinc, 1000, StuasutItems.dencealloy, 560, StuasutItems.barium, 450));
+                alwaysUnlocked = true;
+
+                isFirstTier = true;
+                unitType = UnitTypes.alpha;
+                health = 3000;
+                itemCapacity = 4000;
+                size = 4;
+                unitCapModifier = 6;
+            }};
+
+        //turrets
+
     }
 }
