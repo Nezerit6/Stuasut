@@ -29,10 +29,9 @@ import mindustry.world.blocks.environment.*;
 import mindustry.world.blocks.distribution.*;
 import mindustry.world.blocks.defense.turrets.*;
 
-
 import static mindustry.type.ItemStack.*;
 
-public class StuasutBlocks{
+public class StuasutBlocks {
     public static Block
 
             //environment
@@ -67,19 +66,23 @@ public class StuasutBlocks{
 
     public void load() {
         //environment
-        gert = new Floor("gert"){{
+        gert = new Floor("gert") {{
             playerUnmineable = true;
             variants = 3;
         }};
-        gertwall = new StaticWall("gert-wall"){{
+        gertwall = new StaticWall("gert-wall") {{
             variants = 3;
         }};
-        limestonewall = new StaticWall("limestone-wall"){{
+        limestonewall = new StaticWall("limestone-wall") {{
             variants = 3;
         }};
-        mercurymud = new Floor("mercury-mud"){{
+        mercurymud = new Floor("mercury-mud") {{
             variants = 3;
         }};
-        orezinc = new OreBlock(StuasutItems.zinc){{
+        orezinc = new OreBlock(StuasutItems.zinc) {{
             oreDefault = true;
         }};
+        gertboulder = new Porp(StuasutBlocks.gertboulder) {{
+        }};
+    }
+}
