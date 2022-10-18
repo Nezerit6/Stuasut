@@ -1,23 +1,8 @@
-#the mod name as displayed in-game
 displayName: "Stuasut"
-
-#the internal name of your mod
 name: "stus"
-
-#your name
 author: "Eternity"
-
-#the fully qualified main class of the mod
 main: "stus.Stuasut"
-
-#the mod description as seen in the mod dialog
 description: "no"
-
-#the mod version
 version: 0.1
-
-#the minimum game build required to run this mod
 minGameVersion: 139
-
-#this is a java mod
 java: true
