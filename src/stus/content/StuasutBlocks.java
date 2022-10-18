@@ -28,7 +28,6 @@ import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.environment.*;
 import mindustry.world.blocks.distribution.*;
 import mindustry.world.blocks.defense.turrets.*;
-
 import static mindustry.type.ItemStack.*;
 
 public class StuasutBlocks {
@@ -81,8 +80,6 @@ public class StuasutBlocks {
         }};
         orezinc = new OreBlock(StuasutItems.zinc) {{
             oreDefault = true;
-        }};
-        gertboulder = new Porp(StuasutBlocks.gertboulder) {{
         }};
     }
 }
