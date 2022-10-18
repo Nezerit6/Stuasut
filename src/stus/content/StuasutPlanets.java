@@ -1,6 +1,7 @@
 package stus.content;
 
 import arc.graphics.*;
+import stus.Stuasut;
 import stus.graphics.*;
 import stus.world.meta.*;
 import mindustry.*;
@@ -41,7 +42,7 @@ public class StuasutPlanets {
             atmosphereRadOut = 0.3f;
             clearSectorOnLose = true;
             ruleSetter = r -> {
-                r.loadout = ItemStack.list(StuasutItems.oldmateria, 160);
+                r.loadout = ItemStack.list(stus.content.StuasutItems.zinc, 160);
 //                r.waveTeam = StuasutTeams.decayed;
                 r.attributes.clear();
 //                r.attributes.set(DecalingAttributes.timedrive, 0.4f);
@@ -156,7 +157,7 @@ public class StuasutPlanets {
             ruleSetter = r -> {
                 r.placeRangeCheck = false;
                 r.attributes.clear();
-                r.waveTeam = DecalingTeams.shared;
+//                r.waveTeam = StuasutTeams.shared;
                 r.defaultTeam = Team.sharded;
                 r.showSpawns = true;
                 r.fog = false;
@@ -166,7 +167,7 @@ public class StuasutPlanets {
             atmosphereRadOut = 0.3f;
             startSector = 43;
             landCloudColor = Color.cyan.cpy().a(0.5f);
-            defaultEnv = DecalingEnv.icy | Env.terrestrial;
+            defaultEnv = StuasutEnv.icy | Env.terrestrial;
         }};
-        decalin.hiddenItems.addAll(Vars.content.items()).removeAll(decalinItems);
+        Stuasut.hiddenItems.addAll(Vars.content.items()).removeAll(StuasutItems);
 }}

@@ -11,11 +11,11 @@ import mindustry.world.blocks.defense.turrets.*;
 
 import static mindustry.Vars.*;
 import static mindustry.content.TechTree.*;
-import static stus.content.DecalingSectors.*;
+import static stus.content.StuasutSectors.*;
 
 public class StuasutTechTree {
     public void load(){
-        StuasutPlanets.decalin.techTree = nodeRoot("decalin", DecalingBlocks.coreDry, true, () -> {
+        StuasutPlanets.rapu.techTree = nodeRoot("decalin", StuasutBlocks.coreDawn, true, () -> {
             nodeProduce(DecalingItems.oldmateria, () -> {
                 nodeProduce(DecalingItems.timefragment, () -> {
                 });

@@ -1,17 +1,40 @@
 package stus;
 
-import mindustry.mod.Mod;
-import stus.content.*;
+import arc.*;
+import arc.struct.Seq;
+import arc.util.*;
+import mindustry.*;
+import mindustry.content.*;
+import mindustry.game.EventType.*;
+import mindustry.gen.*;
+import mindustry.mod.*;
+import mindustry.type.Item;
+import mindustry.ui.dialogs.*;
 
 public class Stuasut extends Mod{
+
+    public static Seq<Item> hiddenItems;
+
+    public Stuasut(){
+        Log.info("Loaded Stuasut constructor.");
+
+        //listen for game load event
+        Events.on(ClientLoadEvent.class, e -> {
+            //show dialog upon startup
+            Time.runTask(10f, () -> {
+                BaseDialog dialog = new BaseDialog("frog");
+                dialog.cont.add("behold").row();
+                //mod sprites are prefixed with the mod name (this mod is called 'example-java-mod' in its config)
+                dialog.cont.image(Core.atlas.find("Stuasut-frog")).pad(20f).row();
+                dialog.cont.button("I see", dialog::hide).size(100f, 50f);
+                dialog.show();
+            });
+        });
+    }
+
     @Override
     public void loadContent(){
-        new StuasutItems().load();
-//        new StuasutUnits().load();
-        new StuasutBlocks().load();
-
-//        new StuasutPlanets().load();
-//        new StuasutTechTree().load();
+        Log.info("Loading some stus content.");
     }
 
 }

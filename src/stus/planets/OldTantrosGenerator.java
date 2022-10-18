@@ -1,4 +1,4 @@
-package decal.planets;
+package stus.planets;
 
 import arc.graphics.*;
 import arc.math.*;
@@ -6,7 +6,7 @@ import arc.math.geom.*;
 import arc.struct.*;
 import arc.util.*;
 import arc.util.noise.*;
-import decal.content.DecalingBlocks;
+import stus.content.StuasutBlocks;
 import mindustry.ai.*;
 import mindustry.ai.BaseRegistry.*;
 import mindustry.content.*;
@@ -27,14 +27,14 @@ public class OldTantrosGenerator extends PlanetGenerator{
     Block[][] arr =
             {
                     {Blocks.ice, Blocks.redIce, Blocks.redIce, Blocks.ice, Blocks.redIce},
-                    {Blocks.ice, Blocks.ice, DecalingBlocks.purIce, DecalingBlocks.purIce, DecalingBlocks.purIce},
-                    {Blocks.ice, DecalingBlocks.purIce, Blocks.ice, Blocks.ice, DecalingBlocks.purIce, Blocks.redIce},
-                    {Blocks.redIce, Blocks.ice, DecalingBlocks.purIce, DecalingBlocks.purIce, Blocks.ice, Blocks.redIce, DecalingBlocks.purIce}
+                    {Blocks.ice, Blocks.ice, StuasutBlocks.limestone, StuasutBlocks.limestone, StuasutBlocks.limestone},
+                    {Blocks.ice, StuasutBlocks.limestone, Blocks.ice, Blocks.ice, StuasutBlocks.limestone, Blocks.redIce},
+                    {Blocks.redIce, Blocks.ice, StuasutBlocks.limestone, StuasutBlocks.limestone, Blocks.ice, Blocks.redIce,StuasutBlocks.limestone}
             };
 
     ObjectMap<Block, Block> dec = ObjectMap.of(
             Blocks.ice, Blocks.redIce,
-            DecalingBlocks.purIce
+            StuasutBlocks.limestone
     );
 
     ObjectMap<Block, Block> tars = ObjectMap.of(
