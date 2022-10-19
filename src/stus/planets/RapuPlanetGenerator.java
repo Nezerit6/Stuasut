@@ -198,13 +198,13 @@ public class RapuPlanetGenerator extends PlanetGenerator {
 
 
 		// ores
-		Seq<Block> ores = Seq.with(StuasutBlocks.orezinc);
+		Seq<Block> ores = Seq.with(StuasutBlocks.oreZinc);
 		float poles = 1f - Math.abs(sector.tile.v.y);
 		float nmag = 0.5f;
 		float scl = 1f;
 		float addscl = 1.3f;
 		if(Simplex.noise3d(seed, 2, 0.5, scl, sector.tile.v.x, sector.tile.v.y, sector.tile.v.z)*nmag + poles > 0.3f*addscl){
-			ores.add(StuasutBlocks.orezinc);
+			ores.add(StuasutBlocks.oreZinc);
 		}
 		FloatSeq frequencies = new FloatSeq();
 		for(int i = 0; i < ores.size; i++){

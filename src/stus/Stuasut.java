@@ -38,10 +38,24 @@ public class Stuasut extends Mod{
 
     @Override
     public void loadContent(){
+        /**
+         * Initialization
+         * - Teams
+         * - Status effects
+         * - Weather
+         * - Items
+         * - Liquids
+         * - Bullet
+         * - Units
+         * - Blocks
+         * - Planets(Sectors)
+         * - Tech tree
+         */
         Log.info("Loading some stus content.");
-        StuasutBlocks.load();
+
         StuasutItems.load();
         StuasutUnits.load();
+        StuasutBlocks.load();
         StuasutPlanets.load();
         //StuasutTechTree.java();
     }

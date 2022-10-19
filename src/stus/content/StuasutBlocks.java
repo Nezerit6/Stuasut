@@ -22,7 +22,7 @@ public class StuasutBlocks {
     public static Block
 
             //environment
-            gertwall, limestonewall, gert, limestone, mercurymud, orezinc, orebarium, orecadmium, orerhenium, oreantimony,
+            gertwall, limestonewall, gert, limestone, mercurymud, oreZinc, oreBarium, oreCadmium, oreRhenium, oreAntimony,
 
     //defence
     bariumWall, bariumWallLarge, cadmiumWall, cadmiumWallLarge, rheniumWall, rheniumWallLarge,
@@ -66,20 +66,35 @@ public class StuasutBlocks {
         limestone = new Floor("limestone") {{
             variants = 3;
         }};
-        orezinc = new OreBlock(StuasutItems.zinc) {{
+        /**oreZinc = new OreBlock(StuasutItems.zinc) {{
             oreDefault = true;
+            oreThreshold = 0.81f;
+            oreScale = 23.47619f;
+        }};*/
+        oreZinc = new OreBlock(StuasutItems.zinc) {{
+            oreDefault = true;
+            oreThreshold = 0.81f;
+            oreScale = 23.47619f;
         }};
-        orebarium = new OreBlock(StuasutItems.bariumraw) {{
+        oreBarium = new OreBlock(StuasutItems.bariumraw) {{
             oreDefault = true;
+            oreThreshold = 0.81f;
+            oreScale = 23.47619f;
         }};
-        orecadmium = new OreBlock(StuasutItems.cadmiumraw) {{
+        oreCadmium = new OreBlock(StuasutItems.cadmiumraw) {{
             oreDefault = true;
+            oreThreshold = 0.81f;
+            oreScale = 23.47619f;
         }};
-        orerhenium = new OreBlock(StuasutItems.rheniumraw) {{
+        oreRhenium = new OreBlock(StuasutItems.rheniumraw) {{
             oreDefault = true;
+            oreThreshold = 0.81f;
+            oreScale = 23.47619f;
         }};
-        oreantimony = new OreBlock(StuasutItems.antimonyraw) {{
+        oreAntimony = new OreBlock(StuasutItems.antimonyraw) {{
             oreDefault = true;
+            oreThreshold = 0.81f;
+            oreScale = 23.47619f;
         }};
         //defence
         bariumWall = new Wall("barium-wall"){{
