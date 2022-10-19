@@ -34,7 +34,7 @@ public class StuasutPlanets {
             clearSectorOnLose = true;
             ruleSetter = r -> {
                 r.loadout = ItemStack.list(stus.content.StuasutItems.zinc, 160);
-                r.waveTeam = Team.crux;
+                r.waveTeam = Team.green;
                 r.attributes.clear();
                 r.showSpawns = true;
                 r.fog = false;
@@ -42,6 +42,6 @@ public class StuasutPlanets {
             };
              unlockedOnLand.add(StuasutBlocks.coreDawn);
         }};
-        rapu.hiddenItems.addAll(Vars.content.items()).removeAll(stus.content.StuasutItems);
+        //rapu.hiddenItems.addAll(Vars.content.items()).removeAll(stus.content.StuasutItems);
     }
 }

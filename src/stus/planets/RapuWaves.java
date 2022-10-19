@@ -14,7 +14,7 @@ import static mindustry.content.UnitTypes.*;
 public class RapuWaves {
     public static Seq<SpawnGroup> generate(float difficulty, Rand rand, boolean attack) {
         UnitType[][] species = {
-                {navicula, scepter, reign},
+                {/**navicula,*/ scepter, reign},
         };
 
         //required progression:

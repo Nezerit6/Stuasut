@@ -48,7 +48,7 @@ public class StuasutBlocks {
     //units
 
 
-    public void load() {
+    public static void load() {
         //environment
         gert = new Floor("gert") {{
             playerUnmineable = true;
