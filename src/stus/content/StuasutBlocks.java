@@ -55,7 +55,7 @@ public class StuasutBlocks {
             variants = 3;
         }};
         gertwall = new StaticWall("gert-wall") {{
-            variants = 3;
+            variants = 2;
         }};
         limestonewall = new StaticWall("limestone-wall") {{
             variants = 3;
