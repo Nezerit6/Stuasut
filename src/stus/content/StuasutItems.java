@@ -3,9 +3,7 @@ package stus.content;
 import arc.graphics.*;
 import arc.struct.*;
 import mindustry.type.*;
-//import stus.graphics.*;
-
-import static mindustry.content.Items.*;
+import stus.content.StuasutItems.*;
 
 public class StuasutItems {
     public static Item zinc;
