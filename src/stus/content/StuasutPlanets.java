@@ -10,6 +10,7 @@ import mindustry.graphics.g3d.MultiMesh;
 import mindustry.type.ItemStack;
 import mindustry.type.Planet;
 import stus.planets.RapuPlanetGenerator;
+import stus.content.*;
 
 public class StuasutPlanets {
     public static Planet
@@ -41,6 +42,7 @@ public class StuasutPlanets {
                 r.onlyDepositCore = false;
             };
              unlockedOnLand.add(StuasutBlocks.coreDawn);
+                         hiddenItems.addAll(Vars.content.items()).removeAll(StuasutItems.);
         }};
         //rapu.hiddenItems.addAll(Vars.content.items()).removeAll(stus.content.StuasutItems);
     }
