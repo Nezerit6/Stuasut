@@ -68,6 +68,7 @@ jar{
     }
 }
 
+
 task deploy(type: Jar){
     dependsOn jarAndroid
     dependsOn jar
