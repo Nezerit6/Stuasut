@@ -6,16 +6,7 @@ import mindustry.type.*;
 import stus.content.StuasutItems.*;
 
 public class StuasutItems {
-    public static Item zinc;
-    public static Item bariumraw;
-    public static Item barium;
-    public static Item cadmiumraw;
-    public static Item cadmium;
-    public static Item rheniumraw;
-    public static Item rhenium;
-    public static Item antimonyraw;
-    public static Item antimony;
-    public static Item dencealloy;
+    public static Item zinc; bariumraw, barium, cadmiumraw, cadmium, rheniumraw, rhenium, antimonyraw, antimony, dencealloy;
 
     public static final Seq<Item> StuasutItems = new Seq<>();
 
