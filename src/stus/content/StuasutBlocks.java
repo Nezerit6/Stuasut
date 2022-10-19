@@ -60,7 +60,7 @@ public class StuasutBlocks {
         limestonewall = new StaticWall("limestone-wall") {{
             variants = 3;
         }};
-        mercurymud = new Floor("mercury-mud") {{
+        mercurymud = new Floor("mercury-mud") {{в
             variants = 3;
         }};
         limestone = new Floor("limestone") {{
@@ -153,8 +153,8 @@ public class StuasutBlocks {
 
             //storage
 
-            coreDawn = new CoreBlock("core-shard"){{
-                requirements(Category.effect, BuildVisibility.editorOnly, with(StuasutItems.zinc, 1000, StuasutItems.dencealloy, 560, StuasutItems.barium, 450));
+            coreDawn = new CoreBlock("core-dawn"){{
+                requirements(Category.effect, BuildVisibility.editorOnly, with(StuasutItems.zinc, 2000, StuasutItems.dencealloy, 560, StuasutItems.barium, 800));
                 alwaysUnlocked = true;
 
                 isFirstTier = true;
@@ -164,8 +164,5 @@ public class StuasutBlocks {
                 size = 4;
                 unitCapModifier = 6;
             }};
-
-        //turrets
-
     }
 }

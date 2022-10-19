@@ -7,9 +7,9 @@ import arc.util.*;
 import mindustry.content.*;
 import mindustry.game.*;
 import mindustry.type.*;
+import stus.content.StuasutUnits;
 
 import static mindustry.content.UnitTypes.*;
-import static stus.content.StuasutUnits.*;
 
 public class RapuWaves {
     public static Seq<SpawnGroup> generate(float difficulty, Rand rand, boolean attack) {
