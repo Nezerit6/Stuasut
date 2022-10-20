@@ -4,5 +4,5 @@ author: "Eternity"
 main: "stus.Stuasut"
 description: "no"
 version: 0.1
-minGameVersion: 139
+minGameVersion: 138
 java: true
