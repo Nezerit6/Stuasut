@@ -58,7 +58,7 @@ public class StuasutBlocks {
             variants = 2;
         }};
         limestonewall = new StaticWall("limestone-wall") {{
-            variants = 3;
+            variants = 2;
         }};
         mercurymud = new Floor("mercury-mud") {{
             variants = 3;
