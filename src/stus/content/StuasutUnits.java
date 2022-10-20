@@ -8,7 +8,7 @@ public class StuasutUnits {
     //unit
     navicula;
 
-    public static void load() {
+    public static void load(){
 
     }
 }

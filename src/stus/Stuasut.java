@@ -10,10 +10,7 @@ import mindustry.gen.*;
 import mindustry.mod.*;
 import mindustry.type.Item;
 import mindustry.ui.dialogs.*;
-import stus.content.StuasutBlocks;
-import stus.content.StuasutItems;
-import stus.content.StuasutPlanets;
-import stus.content.StuasutUnits;
+import stus.content.*;
 
 public class Stuasut extends Mod{
 
@@ -57,7 +54,7 @@ public class Stuasut extends Mod{
         StuasutUnits.load();
         StuasutBlocks.load();
         StuasutPlanets.load();
-        //StuasutTechTree.java();
+        StuasutTechTree.load();
     }
 
 }

@@ -42,8 +42,7 @@ public class StuasutPlanets {
                 r.onlyDepositCore = false;
             };
              unlockedOnLand.add(StuasutBlocks.coreDawn);
-                         hiddenItems.addAll(Vars.content.items()).removeAll(StuasutItems.);
+                         hiddenItems.addAll(Vars.content.items()).removeAll(StuasutItems.StuasutItems);
         }};
-        //rapu.hiddenItems.addAll(Vars.content.items()).removeAll(stus.content.StuasutItems);
     }
 }

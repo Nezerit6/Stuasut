@@ -10,7 +10,7 @@ public class StuasutItems {
 
     public static final Seq<Item> StuasutItems = new Seq<>();
 
-    public static void load() {
+    public static void load(){
         zinc = new Item("zinc", Color.valueOf("8ca0b3ff")) {{
             hardness = 1;
             cost = 0.7f;

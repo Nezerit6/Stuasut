@@ -14,7 +14,7 @@ import static mindustry.content.TechTree.*;
 //import static stus.content.StuasutSectors.*;
 
 public class StuasutTechTree {
-    public void load() {
+    public static void load(){
         StuasutPlanets.rapu.techTree = nodeRoot("stuasut", StuasutBlocks.coreDawn, true,() -> {
             nodeProduce(StuasutItems.zinc, () -> {
                 nodeProduce(StuasutItems.bariumraw, () -> {
