@@ -10,6 +10,7 @@ import mindustry.world.blocks.environment.*;
 import mindustry.world.blocks.power.ConsumeGenerator;
 import mindustry.world.blocks.production.BurstDrill;
 import mindustry.world.blocks.storage.CoreBlock;
+import mindustry.world.draw.DrawDefault;
 import mindustry.world.draw.DrawMulti;
 import mindustry.world.draw.DrawRegion;
 import mindustry.world.meta.BuildVisibility;
@@ -68,11 +69,6 @@ public class StuasutBlocks {
         limestone = new Floor("limestone") {{
             variants = 3;
         }};
-        /**oreZinc = new OreBlock(StuasutItems.zinc) {{
-            oreDefault = true;
-            oreThreshold = 0.81f;
-            oreScale = 23.47619f;
-        }};*/
         oreZinc = new OreBlock(StuasutItems.zinc) {{
             oreDefault = true;
             oreThreshold = 0.81f;
@@ -165,21 +161,22 @@ public class StuasutBlocks {
                 size = 2;
                 requirements(Category.power, with(StuasutItems.zinc, 20, StuasutItems.bariumraw, 8));
                 powerProduction = 0.5f;
-                drawer = new DrawMulti(new DrawRegion("-rotator"));
+                drawer = new DrawMulti(new DrawDefault(), new DrawRegion("-rotator", 0.6f * 9f));
             }};
 
             //storage
 
-            coreDawn = new CoreBlock("core-dawn"){{
-                requirements(Category.effect, BuildVisibility.editorOnly, with(StuasutItems.zinc, 2000, StuasutItems.dencealloy, 560, StuasutItems.barium, 800));
-                alwaysUnlocked = true;
+        coreDawn = new CoreBlock("core-dawn"){{
+            requirements(Category.effect, BuildVisibility.editorOnly, with(StuasutItems.zinc, 2000, StuasutItems.dencealloy, 560, StuasutItems.barium, 800));
+            alwaysUnlocked = true;
 
-                isFirstTier = true;
-                unitType = UnitTypes.alpha;
-                health = 3000;
-                itemCapacity = 4000;
-                size = 4;
-                unitCapModifier = 6;
-            }};
+            drawArrow = false;
+            isFirstTier = true;
+            unitType = UnitTypes.alpha;
+            health = 3000;
+            itemCapacity = 4000;
+            size = 4;
+            unitCapModifier = 6;
+        }};
     }
 }
