@@ -28,6 +28,8 @@ public class StuasutBlocks {
     bariumWall, bariumWallLarge, cadmiumWall, cadmiumWallLarge, rheniumWall, rheniumWallLarge,
 
     //crafting
+
+
     //furnace,
 
     //production

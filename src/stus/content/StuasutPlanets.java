@@ -29,7 +29,7 @@ public class StuasutPlanets {
             accessible = true;
             alwaysUnlocked = true;
             atmosphereColor = Color.valueOf("B79E54");
-            startSector = 21;
+            startSector = 135;
             atmosphereRadIn = 0.01f;
             atmosphereRadOut = 0.3f;
             clearSectorOnLose = true;

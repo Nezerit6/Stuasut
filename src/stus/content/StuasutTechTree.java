@@ -15,14 +15,44 @@ import static mindustry.content.TechTree.*;
 
 public class StuasutTechTree {
     public static void load(){
-        StuasutPlanets.rapu.techTree = nodeRoot("stuasut", StuasutBlocks.coreDawn, true,() -> {
+        //start of tech tree - core
+        StuasutPlanets.rapu.techTree = nodeRoot("stuasut", StuasutBlocks.coreDawn, () -> {
+            //the first branch
             nodeProduce(StuasutItems.zinc, () -> {
                 nodeProduce(StuasutItems.bariumraw, () -> {
+                    nodeProduce(StuasutItems.barium, () -> {
+                    });
+                    nodeProduce(StuasutItems.cadmiumraw, () -> {
+                        nodeProduce(StuasutItems.rheniumraw, () -> {
+                            nodeProduce(StuasutItems.antimonyraw, () -> {
+                               nodeProduce(StuasutItems.antimony, () -> {
+
+                               });
+                            });
+                            nodeProduce(StuasutItems.rhenium, () -> {
+                            });
+                        });
+                        nodeProduce(StuasutItems.cadmium, () -> {
+                            nodeProduce(StuasutItems.dencealloy, () -> {
+                            });
+                        });
+                    });
                 });
             });
             node(StuasutBlocks.bariumWall, () -> {
+                node(StuasutBlocks.bariumWallLarge, () -> {
+                });
+                node(StuasutBlocks.cadmiumWall, () -> {
+                    node(StuasutBlocks.cadmiumWallLarge, () -> {
+                       node(StuasutBlocks.rheniumWall, () -> {
+                          node(StuasutBlocks.rheniumWallLarge, () -> {
+                          });
+                       });
+                       node(StuasutBlocks.cadmiumWallLarge, () -> {
+                       });
+                    });
+                });
             });
-
-            });
+        });
     }
 }

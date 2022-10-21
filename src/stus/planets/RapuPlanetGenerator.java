@@ -21,6 +21,7 @@ import static mindustry.Vars.state;
 public class RapuPlanetGenerator extends PlanetGenerator {
 
 	String launchSchem = "bXNjaAF4nGNgYWBhZmDJS8xNZeDNyU9MyS8tCU7OSAVyuVNSi5OLMgtKMvPzGBgY2HISk1JzihmYomMZGfiKS0qLdZPzi1J1UxLLQdKMIMTIwAwAfS0Ufg==";
+
 	RapuBase basegen = new RapuBase();
 	public static final int seed = 29;
 	public static int widthSeed = 1, heightSeed = 2, roomSeed = 3, strokeSeed = 4;
