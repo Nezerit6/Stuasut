@@ -199,7 +199,7 @@ public class RapuPlanetGenerator extends PlanetGenerator {
 
 
 		// ores
-		Seq<Block> ores = Seq.with(StuasutBlocks.oreZinc);
+		Seq<Block> ores = Seq.with(StuasutBlocks.oreZinc, StuasutBlocks.oreBarium);
 		float poles = 1f - Math.abs(sector.tile.v.y);
 		float nmag = 0.5f;
 		float scl = 1f;
