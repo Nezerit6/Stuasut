@@ -3,6 +3,7 @@ import mindustry.content.*;
 import mindustry.entities.effect.*;
 import mindustry.graphics.Pal;
 import mindustry.type.Category;
+import mindustry.type.ItemStack;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.distribution.*;
@@ -26,9 +27,9 @@ public class StuasutBlocks {
     bariumWall, bariumWallLarge, cadmiumWall, cadmiumWallLarge, rheniumWall, rheniumWallLarge,
 
     //crafting
+    bariumForge,
 
-
-    //furnace,
+    //furnace
 
     //production
     zinccrusher,
@@ -133,7 +134,19 @@ public class StuasutBlocks {
         }};
 
         //crafting
-        //oh shit
+        bariumForge = new GenericCrafter("barium-forge"){{
+        requirements(Category.crafting, with(StuasutItems.zinc, 70, StuasutItems.bariumraw, 30));
+        health = 80;
+        size = 3;
+            craftEffect = Fx.pointShockwave;
+            outputItem = new ItemStack(StuasutItems.barium, 1);
+            craftTime = 197f;
+            itemCapacity = 10;
+            drawer = new DrawMulti(new DrawDefault(), new DrawFlame());
+
+            consumePower(2.7f);
+            consumeItems(with(StuasutItems.bariumraw, 3));
+        }};
 
         //production
 
