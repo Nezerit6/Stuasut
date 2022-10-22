@@ -1,22 +1,19 @@
 package stus.content;
-import mindustry.content.Fx;
-import mindustry.content.UnitTypes;
-import mindustry.entities.effect.MultiEffect;
+import mindustry.content.*;
+import mindustry.entities.effect.*;
 import mindustry.graphics.Pal;
 import mindustry.type.Category;
 import mindustry.world.*;
-import mindustry.world.blocks.defense.Wall;
+import mindustry.world.blocks.defense.*;
+import mindustry.world.blocks.distribution.*;
 import mindustry.world.blocks.environment.*;
-import mindustry.world.blocks.power.ConsumeGenerator;
-import mindustry.world.blocks.production.BurstDrill;
-import mindustry.world.blocks.storage.CoreBlock;
-import mindustry.world.draw.DrawDefault;
-import mindustry.world.draw.DrawMulti;
-import mindustry.world.draw.DrawRegion;
-import mindustry.world.meta.BuildVisibility;
-import mindustry.world.meta.Env;
+import mindustry.world.blocks.power.*;
+import mindustry.world.blocks.production.*;
+import mindustry.world.blocks.storage.*;
+import mindustry.world.draw.*;
+import mindustry.world.meta.*;
 
-import static mindustry.type.ItemStack.with;
+import static mindustry.type.ItemStack.*;
 
 
 public class StuasutBlocks {
@@ -40,16 +37,16 @@ public class StuasutBlocks {
     windgenerator, zincbattery, zincbatterylarge, zincnode, zincnodelarge,
 
     //storage
-    coreDawn;
+    coreDawn,
 
     //distribution
-
+    zincBridge
 
     //turrets
     //togi, pulse, collapse,
 
     //units
-
+    ;
 
     public static void load(){
         //environment
@@ -143,6 +140,7 @@ public class StuasutBlocks {
         zinccrusher = new BurstDrill("zinc-crusher"){{
             requirements(Category.production, with(StuasutItems.zinc, 12, StuasutItems.bariumraw, 6));
             drillTime = 64f * 5f;
+            drawArrow = false;
             size = 2;
             hasPower = true;
             tier =2;
@@ -177,6 +175,15 @@ public class StuasutBlocks {
             itemCapacity = 4000;
             size = 4;
             unitCapModifier = 6;
+        }};
+        //distribution
+        zincBridge = new BufferedItemBridge("zinc-bridge"){{
+            requirements(Category.distribution, with(StuasutItems.zinc, 4));
+            fadeIn = moveArrows = false;
+            range = 5;
+            speed = 60f;
+            arrowSpacing = 5f;
+            bufferCapacity = 4;
         }};
     }
 }

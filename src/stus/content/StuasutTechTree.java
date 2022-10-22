@@ -45,6 +45,9 @@ public class StuasutTechTree {
             node(StuasutBlocks.windgenerator, () ->{
                 //TODO more power blocks
             });
+            node(StuasutBlocks.zincBridge, () ->{
+                //TODO more distribute blocks
+            });
             node(StuasutBlocks.bariumWall, () -> {
                 node(StuasutBlocks.bariumWallLarge, () -> {
                 });
