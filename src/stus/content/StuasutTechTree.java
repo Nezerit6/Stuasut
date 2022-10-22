@@ -48,6 +48,9 @@ public class StuasutTechTree {
             node(StuasutBlocks.zincBridge, () ->{
                 //TODO more distribute blocks
             });
+            node(StuasutBlocks.bariumForge, () ->{
+                //TODO more factories
+            });
             node(StuasutBlocks.bariumWall, () -> {
                 node(StuasutBlocks.bariumWallLarge, () -> {
                 });
