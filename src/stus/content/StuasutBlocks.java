@@ -99,11 +99,14 @@ public class StuasutBlocks {
         galliumPuddle = new Floor("gallium-puddle"){{
            speedMultiplier = 0.25f;
            variants = 0;
+           drownTime = 110f;
+
            status = StuasutStatus.inGallium;
            statusDuration = 15f * 60f;
+
            liquidDrop = Liquids.gallium;
            isLiquid = true;
-           supportsOverlay = true;
+           liquidMultiplier = 0.7f;
         }};
 
         //defence
@@ -149,12 +152,12 @@ public class StuasutBlocks {
 
         //crafting
         bariumForge = new GenericCrafter("barium-forge"){{
-        requirements(Category.crafting, with(StuasutItems.zinc, 70, StuasutItems.bariumraw, 30));
-        health = 80;
-        size = 3;
-            craftEffect = Fx.pointShockwave;
-            outputItem = new ItemStack(StuasutItems.barium, 1);
-            craftTime = 197f;
+            requirements(Category.crafting, with(StuasutItems.zinc, 70, StuasutItems.bariumraw, 30));
+            health = 80;
+            size = 3;
+            craftEffect = new MultiEffect(Fx.drillSteam, Color);
+            outputItem = new ItemStack(StuasutItems.barium, 3);
+            craftTime = 180f;
             itemCapacity = 10;
             drawer = new DrawMulti(new DrawDefault(), new DrawFlame());
 
