@@ -3,7 +3,7 @@ package stus.content;
 import arc.graphics.Color;
 import mindustry.content.Fx;
 import mindustry.entities.bullet.BasicBulletType;
-import mindustry.game.MapObjectives;
+import mindustry.gen.UnitEntity;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
 import mindustry.world.meta.BlockFlag;
@@ -20,6 +20,7 @@ public class StuasutUnits {
             health = 50;
             hitSize = 11;
             outlineColor = RapuPal.rapuOutline;
+            constructor = UnitEntity::create;
 
             speed = 2.4f;
             rotateSpeed = 5.4f;
@@ -46,6 +47,7 @@ public class StuasutUnits {
                 mirror = false;
                 bullet = new BasicBulletType(3, 30){{
                     lifetime = 60f;
+                    collidesGround = false;
 
                     trailLength = 15;
                     trailWidth = 1.6f;
@@ -74,6 +76,7 @@ public class StuasutUnits {
                        height = 7f;
 
                        lifetime = 40f;
+                       collidesGround = false;
 
                        trailLength = 10;
                        trailWidth = 1.4f;
@@ -98,6 +101,7 @@ public class StuasutUnits {
                           height = 6f;
 
                           lifetime = 25f;
+                          collidesGround = false;
 
                            trailLength = 5;
                            trailWidth = 1.2f;
