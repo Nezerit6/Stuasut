@@ -26,8 +26,8 @@ public class Stuasut extends Mod{
                 BaseDialog dialog = new BaseDialog("frog");
                 dialog.cont.add("behold").row();
                 //mod sprites are prefixed with the mod name (this mod is called 'example-java-mod' in its config)
-                dialog.cont.image(Core.atlas.find("stuasut-frog.png")).pad(20f).row();
-                dialog.cont.button("I remember the penis is big", dialog::hide).size(100f, 50f);
+                dialog.cont.image(Core.atlas.find("icon.png")).pad(40f).row();
+                dialog.cont.button("I remember the penis is big", dialog::hide).size(300f, 60f);
                 dialog.show();
             });
         });
@@ -50,6 +50,7 @@ public class Stuasut extends Mod{
          */
         Log.info("Loading some stus content.");
 
+        StuasutStatus.load();
         StuasutItems.load();
         StuasutUnits.load();
         StuasutBlocks.load();

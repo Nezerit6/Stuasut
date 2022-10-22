@@ -15,6 +15,7 @@ public class RapuWaves {
     public static Seq<SpawnGroup> generate(float difficulty, Rand rand, boolean attack) {
         UnitType[][] species = {
                 {dagger, mace, fortress, scepter, reign},
+                {StuasutUnits.navicula}
         };
 
         //required progression:
