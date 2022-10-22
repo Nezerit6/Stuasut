@@ -155,7 +155,7 @@ public class StuasutBlocks {
             requirements(Category.crafting, with(StuasutItems.zinc, 70, StuasutItems.bariumraw, 30));
             health = 80;
             size = 3;
-            craftEffect = new MultiEffect(Fx.drillSteam, Color);
+            craftEffect = new MultiEffect(Fx.pointShockwave, Fx.pointShockwave);
             outputItem = new ItemStack(StuasutItems.barium, 3);
             craftTime = 180f;
             itemCapacity = 10;
