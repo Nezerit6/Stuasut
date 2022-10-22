@@ -1,16 +1,12 @@
 package stus.content;
 
-import arc.graphics.Color;
-import mindustry.Vars;
-import mindustry.content.Planets;
-import mindustry.game.Team;
-import mindustry.graphics.g3d.HexMesh;
-import mindustry.graphics.g3d.HexSkyMesh;
-import mindustry.graphics.g3d.MultiMesh;
-import mindustry.type.ItemStack;
-import mindustry.type.Planet;
-import stus.planets.RapuPlanetGenerator;
-import stus.content.*;
+import arc.graphics.*;
+import mindustry.*;
+import mindustry.content.*;
+import mindustry.game.*;
+import mindustry.graphics.g3d.*;
+import mindustry.type.*;
+import stus.planets.*;
 
 public class StuasutPlanets {
     public static Planet
@@ -42,7 +38,7 @@ public class StuasutPlanets {
                 r.onlyDepositCore = false;
             };
              unlockedOnLand.add(StuasutBlocks.coreDawn);
-                         hiddenItems.addAll(Vars.content.items()).removeAll(StuasutItems.StuasutItems);
+                         hiddenItems.addAll(Vars.content.items()).removeAll(StuasutItems.rapuItems);
         }};
     }
 }

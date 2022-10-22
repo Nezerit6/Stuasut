@@ -39,6 +39,12 @@ public class StuasutTechTree {
                     });
                 });
             });
+            node(StuasutBlocks.zinccrusher, () ->{
+                //TODO more drills
+            });
+            node(StuasutBlocks.windgenerator, () ->{
+                //TODO more power blocks
+            });
             node(StuasutBlocks.bariumWall, () -> {
                 node(StuasutBlocks.bariumWallLarge, () -> {
                 });

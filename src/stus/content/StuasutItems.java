@@ -4,10 +4,12 @@ import arc.graphics.*;
 import arc.struct.*;
 import mindustry.type.*;
 
+import static mindustry.content.Items.*;
+
 public class StuasutItems {
     public static Item zinc, bariumraw, barium, cadmiumraw, cadmium, rheniumraw, rhenium, antimonyraw, antimony, dencealloy;
 
-    public static final Seq<Item> StuasutItems = new Seq<>();
+    public static final Seq<Item> rapuItems = new Seq<>();
 
     public static void load(){
         zinc = new Item("zinc", Color.valueOf("8ca0b3ff")) {{
@@ -56,5 +58,8 @@ public class StuasutItems {
             alwaysUnlocked = true;
             cost = 0.7f;
         }};
+        rapuItems.addAll(
+                zinc, bariumraw, barium, cadmiumraw, cadmium, rheniumraw, rhenium, antimonyraw, antimony, dencealloy
+        );
     }
 }
