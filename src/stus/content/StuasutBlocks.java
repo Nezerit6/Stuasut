@@ -9,6 +9,7 @@ import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
+import mindustry.graphics.CacheLayer;
 import mindustry.graphics.Pal;
 import mindustry.type.*;
 import mindustry.world.*;
@@ -118,6 +119,7 @@ public class StuasutBlocks {
            liquidDrop = Liquids.gallium;
            isLiquid = true;
            liquidMultiplier = 0.7f;
+           cacheLayer = CacheLayer.tar;
         }};
 
         //defence
@@ -218,12 +220,12 @@ public class StuasutBlocks {
         //storage
 
         coreDawn = new CoreBlock("core-dawn"){{
-            requirements(Category.effect, BuildVisibility.editorOnly, with(StuasutItems.zinc, 2000, StuasutItems.dencealloy, 560, StuasutItems.barium, 800));
+            requirements(Category.effect, BuildVisibility.editorOnly, with(StuasutItems.zinc, 2000, StuasutItems.barium, 800));
             alwaysUnlocked = true;
 
             drawArrow = false;
             isFirstTier = true;
-            unitType = UnitTypes.alpha;
+            unitType = UnitTypes.poly;
             health = 3000;
             itemCapacity = 4000;
             size = 4;
