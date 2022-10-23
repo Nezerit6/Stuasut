@@ -45,8 +45,12 @@ public class StuasutTechTree {
             node(StuasutBlocks.windgenerator, () ->{
                 //TODO more power blocks
             });
-            node(StuasutBlocks.zincBridge, () ->{
-                //TODO more distribute blocks
+            node(StuasutBlocks.zincDuct, () ->{
+                node(StuasutBlocks.bariumDuct, () ->{
+
+                });
+                node(StuasutBlocks.zincBridge, () ->{
+                });
             });
             node(StuasutBlocks.bariumForge, () ->{
                 //TODO more factories
@@ -62,6 +66,16 @@ public class StuasutTechTree {
                        });
                        node(StuasutBlocks.cadmiumWallLarge, () -> {
                        });
+                    });
+                });
+            });
+            node(StuasutBlocks.togis, () ->{
+                node(StuasutBlocks.clor, () ->{
+
+                });
+                node(StuasutBlocks.pulse, () ->{
+                    node(StuasutBlocks.collapse, () ->{
+
                     });
                 });
             });

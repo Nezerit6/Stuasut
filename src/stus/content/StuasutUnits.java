@@ -38,7 +38,7 @@ public class StuasutUnits {
 
             alwaysUnlocked = true;
 
-            weapons.add(new Weapon("main-weapon"){{
+            weapons.add(new Weapon("stus-main-weapon"){{
                 x = 0f;
                 y = -2f;
                 reload = 30f;
