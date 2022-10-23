@@ -9,7 +9,7 @@ import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
-import mindustry.graphics.Pal;
+import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.*;
@@ -19,9 +19,11 @@ import mindustry.world.blocks.environment.*;
 import mindustry.world.blocks.power.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.storage.*;
+import mindustry.world.blocks.units.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
-import stus.graphics.RapuPal;
+import stus.graphics.*;
+import stus.world.blocks.storage.*;
 
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
@@ -217,7 +219,7 @@ public class StuasutBlocks {
 
         //storage
 
-        coreDawn = new CoreBlock("core-dawn"){{
+        coreDawn = new RegenCore("core-dawn"){{
             requirements(Category.effect, BuildVisibility.editorOnly, with(StuasutItems.zinc, 2000, StuasutItems.dencealloy, 560, StuasutItems.barium, 800));
             alwaysUnlocked = true;
 
@@ -417,6 +419,13 @@ public class StuasutBlocks {
                     }});
             drawer = new DrawTurret("rapu-");
             researchCost = with(StuasutItems.zinc, 550, StuasutItems.barium, 250, StuasutItems.dencealloy, 175);
+        }};
+        airFactory = new UnitFactory("air-fuck"){{
+            requirements(Category.units, with(StuasutItems.zinc, 130, StuasutItems.barium, 70));
+            size = 3;
+            plans.add(new UnitPlan(StuasutUnits.navicula, 60f * 34f, with(StuasutItems.zinc, 30, StuasutItems.barium, 20)));
+            researchCostMultiplier = 0.7f;
+            consumePower(2.6f);
         }};
     }
 }

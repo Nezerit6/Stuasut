@@ -52,6 +52,11 @@ public class StuasutTechTree {
                 node(StuasutBlocks.zincBridge, () ->{
                 });
             });
+            node(StuasutBlocks.airFactory, () ->{
+                node(StuasutUnits.navicula, () ->{
+
+                });
+            });
             node(StuasutBlocks.bariumForge, () ->{
                 //TODO more factories
             });
