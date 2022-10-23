@@ -29,7 +29,7 @@ public class RapuPlanetGenerator extends PlanetGenerator {
 	public Block[] arr = {
 			StuasutBlocks.gert,
 			StuasutBlocks.gert,
-		Blocks.stone,
+			Blocks.stone,
 			StuasutBlocks.gert,
 	};
 
@@ -206,6 +206,17 @@ public class RapuPlanetGenerator extends PlanetGenerator {
 		float addscl = 1.3f;
 		if(Simplex.noise3d(seed, 2, 0.5, scl, sector.tile.v.x, sector.tile.v.y, sector.tile.v.z)*nmag + poles > 0.3f*addscl){
 			ores.add(StuasutBlocks.oreZinc);
+		}
+		if(Simplex.noise3d(seed, 2, 0.5, scl, sector.tile.v.x, sector.tile.v.y, sector.tile.v.z)*nmag + poles > 0.25f*addscl){
+			ores.add(StuasutBlocks.oreCadmium);
+		}
+
+		if(Simplex.noise3d(seed, 2, 0.5, scl, sector.tile.v.x + 1, sector.tile.v.y, sector.tile.v.z)*nmag + poles > 0.5f*addscl){
+			ores.add(StuasutBlocks.oreRhenium);
+		}
+
+		if(Simplex.noise3d(seed, 2, 0.5, scl, sector.tile.v.x + 2, sector.tile.v.y, sector.tile.v.z)*nmag + poles > 0.7f*addscl){
+			ores.add(StuasutBlocks.oreAntimony);
 		}
 		FloatSeq frequencies = new FloatSeq();
 		for(int i = 0; i < ores.size; i++){
