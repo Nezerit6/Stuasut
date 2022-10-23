@@ -216,11 +216,15 @@ public class StuasutBlocks {
             powerProduction = 0.5f;
             drawer = new DrawMulti(new DrawDefault(), new DrawRegion("-rotator", 0.4f * 9f));
         }};//TODO make more power generator
-
+        zincnode = new PowerNode("zinc-power-node"){{
+            requirements(Category.power, with(StuasutItems.zinc, 5, StuasutItems.bariumraw, 2));
+            maxNodes = 10;
+            laserRange = 7f;
+        }};
         //storage
 
         coreDawn = new CoreBlock("core-dawn"){{
-            requirements(Category.effect, BuildVisibility.editorOnly, with(StuasutItems.zinc, 2000, StuasutItems.barium, 800));
+            requirements(Category.effect, BuildVisibility.editorOnly, with(StuasutItems.zinc, 2000, StuasutItems.bariumraw, 800));
             alwaysUnlocked = true;
 
             drawArrow = false;

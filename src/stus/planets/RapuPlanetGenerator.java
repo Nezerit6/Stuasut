@@ -20,7 +20,7 @@ import static mindustry.Vars.state;
 
 public class RapuPlanetGenerator extends PlanetGenerator {
 
-	String launchSchem = "bXNjaAF4nGNgYWBhZmDJS8xNZeDNyU9MyS8tCU7OSAVyuVNSi5OLMgtKMvPzGBgY2HISk1JzihmYomMZGfiKS0qLdZPzi1J1UxLLQdKMIMTIwAwAfS0Ufg==";
+	String launchSchem = "bXNjaAF4nCVOQQrCMBAc01IKQi/6jVz8ikfxEJNFA+luSVICPt2DNY27DDM7DMNixNihZzMTpiDGyZqv9kUzXXB0lGz0S/bCAIZgHhQS1O3e4ZTymnTx7PSTmKLJEjE100ok7UxhnNv99mz1IoWiZnG0N6GNQtPqgK6uUtUY9meA7bt90Ff8s2qnGvwBW6Mqlg==";
 
 	RapuBase basegen = new RapuBase();
 	public static final int seed = 29;
