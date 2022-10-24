@@ -36,8 +36,6 @@ public class StuasutUnits {
             lowAltitude = true;
             itemCapacity = 10;
 
-            alwaysUnlocked = true;
-
             weapons.add(new Weapon("stus-main-weapon"){{
                 x = 0f;
                 y = -2f;

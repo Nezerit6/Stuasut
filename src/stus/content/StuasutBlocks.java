@@ -215,9 +215,9 @@ public class StuasutBlocks {
         windgenerator = new ConsumeGenerator("wind-generator"){{
             size = 2;
             requirements(Category.power, with(StuasutItems.zinc, 20, StuasutItems.bariumraw, 8));
-            powerProduction = 0.5f;
+            powerProduction = 0.8f;
             drawer = new DrawMulti(new DrawDefault(), new DrawRegion("-rotator", 0.4f * 9f));
-        }};//TODO make more power generator
+        }};
         zincnode = new PowerNode("zinc-power-node"){{
             requirements(Category.power, with(StuasutItems.zinc, 5, StuasutItems.bariumraw, 2));
             maxNodes = 10;
@@ -226,7 +226,7 @@ public class StuasutBlocks {
         //storage
 
         coreDawn = new RegenCore("core-dawn"){{
-            requirements(Category.effect, BuildVisibility.editorOnly, with(StuasutItems.zinc, 2000, StuasutItems.bariumraw, 800));
+            requirements(Category.effect, BuildVisibility.debugOnly,with(StuasutItems.zinc, 2000, StuasutItems.bariumraw, 800));
             alwaysUnlocked = true;
 
             drawArrow = false;
@@ -257,7 +257,7 @@ public class StuasutBlocks {
             speed = 60f;
             arrowSpacing = 5f;
             bufferCapacity = 4;
-            researchCost = with(StuasutItems.zinc, 16);
+            researchCost = with(StuasutItems.zinc, 20);
         }};
         clor = new ItemTurret("clor"){{
             requirements(Category.turret, with(
