@@ -16,11 +16,10 @@ import mindustry.maps.generators.*;
 import mindustry.type.*;
 import mindustry.world.*;
 
-import static mindustry.Vars.state;
-
+import static mindustry.Vars.*;
 public class RapuPlanetGenerator extends PlanetGenerator {
 
-	String launchSchem = "bXNjaAF4nCVOQQrCMBAc01IKQi/6jVz8ikfxEJNFA+luSVICPt2DNY27DDM7DMNixNihZzMTpiDGyZqv9kUzXXB0lGz0S/bCAIZgHhQS1O3e4ZTymnTx7PSTmKLJEjE100ok7UxhnNv99mz1IoWiZnG0N6GNQtPqgK6uUtUY9meA7bt90Ff8s2qnGvwBW6Mqlg==";
+	String launchSchem = "bXNjaAF4nGNgYWBhZmDJS8xNZeDNyU9MyS8tCU7OSAVyuVNSi5OLMgtKMvPzGBgY2HISk1JzihmYomMZGfiKS0qLdZPzi1J1UxLLQdKMIMTIwAwAfS0Ufg==";
 
 	RapuBase basegen = new RapuBase();
 	public static final int seed = 29;
@@ -275,7 +274,7 @@ public class RapuPlanetGenerator extends PlanetGenerator {
 				break;
 			}
 		}
-		Schematics.placeLaunchLoadout(spawnX, spawnY);
+		Schematics.placeLoadout(Schematics.readBase64(launchSchem), spawnX, spawnY, Team.sharded);
 
 		tiles.getn(r.get(1).x, r.get(1).y).setOverlay(Blocks.spawn);
 

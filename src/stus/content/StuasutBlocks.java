@@ -226,7 +226,7 @@ public class StuasutBlocks {
         //storage
 
         coreDawn = new RegenCore("core-dawn"){{
-            requirements(Category.effect, BuildVisibility.editorOnly, with(StuasutItems.zinc, 2000, StuasutItems.bariumraw, 800));
+            requirements(Category.effect, with(StuasutItems.zinc, 2000, StuasutItems.bariumraw, 800));
             alwaysUnlocked = true;
 
             drawArrow = false;
