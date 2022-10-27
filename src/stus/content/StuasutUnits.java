@@ -1,19 +1,19 @@
 package stus.content;
 
-import arc.graphics.Color;
-import mindustry.content.Fx;
-import mindustry.entities.bullet.BasicBulletType;
-import mindustry.gen.UnitEntity;
-import mindustry.type.UnitType;
-import mindustry.type.Weapon;
-import mindustry.world.meta.BlockFlag;
+import arc.graphics.*;
+import mindustry.ai.types.*;
+import mindustry.content.*;
+import mindustry.entities.bullet.*;
+import mindustry.gen.*;
+import mindustry.type.*;
+import mindustry.world.meta.*;
 import stus.graphics.RapuPal;
 
 public class StuasutUnits {
     public static UnitType
 
     //unit
-    navicula;
+    navicula, sunrise;
 
     public static void load(){
         navicula = new UnitType("navicula"){{
@@ -30,6 +30,7 @@ public class StuasutUnits {
             targetAir = true;
             targetGround = false;
             targetFlags = new BlockFlag[]{BlockFlag.generator, null};
+            faceTarget = true;
             flying = true;
 
             engineOffset = 5.7f;
@@ -42,12 +43,11 @@ public class StuasutUnits {
                 x = 0f;
                 y = -2f;
                 reload = 30f;
-                rotate = true;
+                rotate = false;
                 shootCone = 15f;
                 mirror = false;
                 bullet = new BasicBulletType(3, 30){{
                     lifetime = 60f;
-                    collidesGround = false;
 
                     trailLength = 15;
                     trailWidth = 1.6f;
@@ -70,13 +70,13 @@ public class StuasutUnits {
                     fragLifeMax = 1f;
                     despawnShake = 0f;
                     fragOnHit = true;
+                    buildingDamageMultiplier = 0.4f;
 
                     fragBullet = new BasicBulletType(2.5f, 10f){{
                        width = 6f;
                        height = 7f;
 
                        lifetime = 40f;
-                       collidesGround = false;
 
                        trailLength = 10;
                        trailWidth = 1.4f;
@@ -95,23 +95,75 @@ public class StuasutUnits {
                        fragLifeMin = 1f;
                        fragLifeMax = 5f;
                        fragOnHit = true;
+                       buildingDamageMultiplier = 0.4f;
 
                        fragBullet = new BasicBulletType(2f, 5f){{
                           width = 5f;
                           height = 6f;
 
                           lifetime = 25f;
-                          collidesGround = false;
 
-                           trailLength = 5;
-                           trailWidth = 1.2f;
-                           trailSinScl = 2f;
-                           trailSinMag = 0.5f;
-                           trailEffect = Fx.none;
+                          trailLength = 5;
+                          trailWidth = 1.2f;
+                          trailSinScl = 2f;
+                          trailSinMag = 0.5f;
+                          trailEffect = Fx.none;
+                          buildingDamageMultiplier = 0.4f;
                        }};
                     }};
                 }};
             }});
+        }};
+        sunrise = new UnitType("sunrise"){{
+           aiController = BuilderAI::new;
+           isEnemy = false;
+           constructor = UnitEntity::create;
+
+           lowAltitude = true;
+           flying = true;
+           mineSpeed = 7f;
+           mineTier = 1;
+           buildSpeed = 0.75f;
+           drag = 0.05f;
+           speed = 3.6f;
+           rotateSpeed = 17f;
+           accel = 0.1f;
+           itemCapacity = 50;
+           health = 210;
+           engineOffset = 6f;
+           hitSize = 10f;
+           alwaysUnlocked = true;
+           faceTarget = false;
+
+           weapons.add(new Weapon("stus-sunrise-weapon"){{
+               top = false;
+               reload = 20f;
+               mirror = false;
+
+               x = 0f;
+               y = 0f;
+
+               rotate = true;
+               shoot.shots = 2;
+               shoot.shotDelay = 5f;
+
+               ejectEffect = Fx.none;
+
+               bullet = new MissileBulletType(3.6f, 24){{
+                  width = 7f;
+                  height = 9f;
+
+                  homingPower = 0.05f;
+                  homingRange = 90;
+
+                  lifetime = 65f;
+
+                  shootSound = Sounds.missile;
+                  shootEffect = Fx.shootSmall;
+                  smokeEffect = Fx.shootSmallSmoke;
+                  buildingDamageMultiplier = 0.001f;
+               }};
+           }});
         }};
     }//TODO make core unit
 }

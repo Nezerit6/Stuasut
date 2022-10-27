@@ -43,7 +43,10 @@ public class StuasutTechTree {
                 //TODO more drills
             });
             node(StuasutBlocks.windgenerator, () ->{
-                //TODO more power blocks
+                node(StuasutBlocks.zincnode, () -> {
+                   node(StuasutBlocks.zincnodelarge, () -> {
+                   });
+                });
             });
             node(StuasutBlocks.zincDuct, () ->{
                 node(StuasutBlocks.bariumDuct, () ->{

@@ -27,15 +27,23 @@ public class RapuPlanetGenerator extends PlanetGenerator {
 
 	public Block[] arr = {
 			StuasutBlocks.gert,
+			StuasutBlocks.limestone,
+			StuasutBlocks.limestone,
 			StuasutBlocks.gert,
 			Blocks.stone,
 			StuasutBlocks.gert,
+			StuasutBlocks.mercurymud,
+			StuasutBlocks.mercurymud,
 	};
+	ObjectMap<Block, Block> dec = ObjectMap.of(
+			StuasutBlocks.gert, StuasutBlocks.gertBoulder,
+			StuasutBlocks.limestone, StuasutBlocks.limestoneBoulder
+	);
 
 	float rawHeight(Vec3 pos) {
 		return Simplex.noise3d(seed, 13, 0.6f, 0.9f, pos.x, pos.y, pos.z);
 	}
-	float humidity(Vec3 pos) {
+	float humidity(Vec3 pos)  {
 		return Simplex.noise3d(13, 7, 0.5f, 0.5f, pos.x, pos.y, pos.z);
 	}
 
@@ -112,6 +120,7 @@ public class RapuPlanetGenerator extends PlanetGenerator {
 
 		Vec2 pos = new Vec2();
 		Seq<Room> r = new Seq<>();
+		Seq<Room> roomseq = new Seq<>();
 		float maxd = Mathf.dst(width/2f, height/2f);
 
 		// enemy and player rooms
@@ -136,14 +145,25 @@ public class RapuPlanetGenerator extends PlanetGenerator {
 		pass((x, y) -> {
 			floor = getBlock(x / (width * 0.5f), y / (height * 0.5f), sector.tile.v.z);
 		});
-		
-		
-		// inverseFloodFill() wasn't working soo
-		for(Tile tile : tiles){
-			if(tile.block() == Blocks.air){
-				tile.setBlock(tile.floor().wall);
+
+		pass((x, y) -> {
+			if (block == Blocks.air) {
+				block = floor.asFloor().wall;
 			}
-		}
+
+			//decoration
+			if (rand.chance(0.01) && block == Blocks.air) {
+				block = dec.get(floor, floor.asFloor().decoration);
+			}
+
+			//gallium
+			if(floor == StuasutBlocks.gert){
+				if(Math.abs(0.5f - noise(x - 40, y, 2, 0.7, 80)) > 0.25f &&
+						Math.abs(0.5f - noise(x, y + sector.id*10, 1, 1.5f, 80)) > 0.41f && !(roomseq.contains(t -> Mathf.within(x, y, t.x, t.y, 15)))){
+					floor = StuasutBlocks.galliumPuddle;
+				}
+			}
+		});
 
 		// create rooms
 		for (int i = 0; i < 7; i++) {

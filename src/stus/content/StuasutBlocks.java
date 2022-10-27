@@ -35,7 +35,12 @@ import static mindustry.type.ItemStack.*;
 public class StuasutBlocks {
     public static Block
     //environment
-    gertwall, limestonewall, gert, limestone, mercurymud, oreZinc, oreBarium, oreCadmium, oreRhenium, oreAntimony,
+    gertwall, limestonewall, gert, limestone, mercurymud, slate,
+
+    //boulders
+    gertBoulder, limestoneBoulder,
+    //ores
+    oreZinc, oreBarium, oreCadmium, oreRhenium, oreAntimony,
 
     //liquid
     galliumPuddle,
@@ -84,6 +89,17 @@ public class StuasutBlocks {
         limestone = new Floor("limestone") {{
             variants = 3;
         }};
+        slate = new StaticWall("slate-wall"){{
+           variants = 2;
+        }};
+        //boulders
+        gertBoulder = new Prop("gert-boulder"){{
+           variants = 2;
+        }};
+        limestoneBoulder = new Prop("limestone-boulder"){{
+            variants = 2;
+        }};
+        //ores
         oreZinc = new OreBlock(StuasutItems.zinc) {{
             oreDefault = true;
             oreThreshold = 0.81f;
@@ -222,6 +238,12 @@ public class StuasutBlocks {
             requirements(Category.power, with(StuasutItems.zinc, 5, StuasutItems.bariumraw, 2));
             maxNodes = 10;
             laserRange = 7f;
+            researchCost = with(StuasutItems.zinc, 40, StuasutItems.bariumraw, 16);
+        }};
+        zincnodelarge = new PowerNode("large-zinc-power-node"){{
+           requirements(Category.power, with(StuasutItems.zinc, 10, StuasutItems.bariumraw, 5, StuasutItems.barium, 2));
+           maxNodes = 15;
+           laserRange = 16f;
         }};
         //storage
 
@@ -231,7 +253,7 @@ public class StuasutBlocks {
 
             drawArrow = false;
             isFirstTier = true;
-            unitType = UnitTypes.poly;
+            unitType = StuasutUnits.sunrise;
             health = 3000;
             itemCapacity = 4000;
             size = 4;
