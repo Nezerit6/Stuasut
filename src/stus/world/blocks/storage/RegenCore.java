@@ -17,13 +17,10 @@ import static mindustry.Vars.*;
 public class RegenCore extends CoreBlock {
     public final int timerUse = timers++;
     public Color baseColor = Color.valueOf("84f491");
-    public Color phaseColor = baseColor;
     public TextureRegion topRegion;
     public float reload = 250f;
     public float range = 60f;
     public float healPercent = 12f;
-    public float phaseBoost = 12f;
-    public float phaseRangeBoost = 50f;
     public float useTime = 400f;
 
     public RegenCore(String name){
@@ -49,9 +46,6 @@ public class RegenCore extends CoreBlock {
 
         stats.add(Stat.repairTime, (int)(100f / healPercent * reload / 60f), StatUnit.seconds);
         stats.add(Stat.range, range / tilesize, StatUnit.blocks);
-
-        stats.add(Stat.boostEffect, phaseRangeBoost / tilesize, StatUnit.blocks);
-        stats.add(Stat.boostEffect, (phaseBoost + healPercent) / healPercent, StatUnit.timesSpeed);
     }
     @Override
     public void load() {
@@ -69,7 +63,7 @@ public class RegenCore extends CoreBlock {
     }
 
     public class RegenCoreBuild extends CoreBuild implements Ranged {
-        public float heat, charge = Mathf.random(reload), phaseHeat, smoothEfficiency;
+        public float heat, charge = Mathf.random(reload), smoothEfficiency;
 
         @Override
         public float range() {
@@ -84,18 +78,16 @@ public class RegenCore extends CoreBlock {
             heat = Mathf.lerpDelta(heat, efficiency > 0 && canHeal ? 1f : 0f, 0.08f);
             charge += heat * delta();
 
-            phaseHeat = Mathf.lerpDelta(phaseHeat, optionalEfficiency, 0.1f);
-
             if (optionalEfficiency > 0 && timer(timerUse, useTime) && canHeal) {
                 consume();
             }
 
             if (charge >= reload && canHeal) {
-                float realRange = range + phaseHeat * phaseRangeBoost;
+                float realRange = range;
                 charge = 0f;
 
                 indexer.eachBlock(this, realRange, b -> b.damaged() && !b.isHealSuppressed(), other -> {
-                    other.heal(other.maxHealth() * (healPercent + phaseHeat * phaseBoost) / 100f * efficiency);
+                    other.heal(other.maxHealth() * healPercent / 100f * efficiency);
                     other.recentlyHealed();
                     Fx.healBlockFull.at(other.x, other.y, other.block.size, baseColor, other.block);
                 });
@@ -110,27 +102,11 @@ public class RegenCore extends CoreBlock {
 
         @Override
         public void drawSelect() {
-            float realRange = range + phaseHeat * phaseRangeBoost;
+            float realRange = range;
 
             indexer.eachBlock(this, realRange, other -> true, other -> Drawf.selected(other, Tmp.c1.set(baseColor).a(Mathf.absin(4f, 1f))));
 
             Drawf.dashCircle(x, y, realRange, baseColor);
-        }
-
-        @Override
-        public void draw() {
-            super.draw();
-
-            float f = 1f - (Time.time / 100f) % 1f;
-
-            Draw.color(baseColor, phaseColor, phaseHeat);
-            Draw.alpha(heat * Mathf.absin(Time.time, 50f / Mathf.PI2, 1f) * 0.5f);
-            Draw.rect(topRegion, x, y);
-            Draw.alpha(1f);
-            Lines.stroke((2f * f + 0.2f) * heat);
-            Lines.square(x, y, Math.min(1f + (1f - f) * size * tilesize / 2f, size * tilesize / 2f));
-
-            Draw.reset();
         }
 
         @Override
@@ -142,14 +118,12 @@ public class RegenCore extends CoreBlock {
         public void write(Writes write) {
             super.write(write);
             write.f(heat);
-            write.f(phaseHeat);
         }
 
         @Override
         public void read(Reads read, byte revision) {
             super.read(read, revision);
             heat = read.f();
-            phaseHeat = read.f();
         }
     }
 }

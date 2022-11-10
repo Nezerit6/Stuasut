@@ -15,14 +15,98 @@ public class StuasutUnits {
     //unit
     navicula, sunrise;
 
+    public static BasicBulletType naviculaBullet = new BasicBulletType(3, 30){{
+
+        lifetime = 30f;
+
+        trailLength = 15;
+        trailWidth = 1.6f;
+        trailSinScl = 2f;
+        trailSinMag = 0.5f;
+        trailEffect = Fx.none;
+        trailColor = Color.valueOf("FF6F89FF");
+
+        frontColor = Color.valueOf("FFFFFF");
+        backColor = Color.valueOf("D85876FF");
+
+        width = 7;
+        height = 8;
+
+        fragBullets = 2;
+        fragVelocityMin = 0.7f;
+        fragVelocityMax = 3f;
+        fragRandomSpread = 16f;
+        fragLifeMin = 0.6f;
+        fragLifeMax = 1f;
+        despawnShake = 0f;
+        fragOnHit = true;
+        buildingDamageMultiplier = 0.3f;
+
+        fragBullet = new BasicBulletType(2.5f, 10f){{
+            width = 6f;
+            height = 7f;
+
+            lifetime = 15f;
+
+            trailLength = 10;
+            trailWidth = 1.4f;
+            trailSinScl = 2f;
+            trailSinMag = 0.5f;
+            trailEffect = Fx.none;
+            trailColor = Color.valueOf("FF6F89FF");
+
+            frontColor = Color.valueOf("FFFFFF");
+            backColor = Color.valueOf("D85876FF");
+
+            fragBullets = 6;
+            fragRandomSpread = 25f;
+            fragVelocityMin = 0.7f;
+            fragVelocityMax = 2f;
+            fragLifeMin = 1f;
+            fragLifeMax = 5f;
+            fragOnHit = true;
+            buildingDamageMultiplier = 0.4f;
+
+            fragBullet = new BasicBulletType(2f, 5f){{
+                width = 5f;
+                height = 6f;
+
+                lifetime = 7.5f;
+
+                trailLength = 5;
+                trailWidth = 1.2f;
+                trailSinScl = 2f;
+                trailSinMag = 0.5f;
+                trailEffect = Fx.none;
+                trailColor = Color.valueOf("FF6F89FF");
+
+                frontColor = Color.valueOf("FFFFFF");
+                backColor = Color.valueOf("D85876FF");
+                buildingDamageMultiplier = 0.3f;
+            }};
+        }};
+    }};
+    public static Weapon getNaviculaWeapon(float x, float y){
+        Weapon weapon = new Weapon("stus-main-weapon"){{
+            reload = 30f;
+            rotate = false;
+            shootCone = 15f;
+            mirror = false;
+            bullet = naviculaBullet;
+        }};
+        weapon.x = x;
+        weapon.y = y;
+        return weapon;
+    }
     public static void load(){
+
         navicula = new UnitType("navicula"){{
             health = 50;
             hitSize = 11;
             outlineColor = RapuPal.rapuOutline;
             constructor = UnitEntity::create;
 
-            speed = 2.4f;
+            speed = 2.6f;
             rotateSpeed = 5.4f;
             drag = 0.03f;
             accel = 0.1f;
@@ -37,80 +121,7 @@ public class StuasutUnits {
             lowAltitude = true;
             itemCapacity = 10;
 
-            weapons.add(new Weapon("stus-main-weapon"){{
-                x = 0f;
-                y = -2f;
-                reload = 30f;
-                rotate = false;
-                shootCone = 15f;
-                mirror = false;
-                bullet = new BasicBulletType(3, 30){{
-                    lifetime = 60f;
-
-                    trailLength = 15;
-                    trailWidth = 1.6f;
-                    trailSinScl = 2f;
-                    trailSinMag = 0.5f;
-                    trailEffect = Fx.none;
-                    trailColor = Color.valueOf("FF6F89FF");
-
-                    frontColor = Color.valueOf("FFFFFF");
-                    backColor = Color.valueOf("D85876FF");
-
-                    width = 7;
-                    height = 8;
-
-                    fragBullets = 2;
-                    fragVelocityMin = 0.7f;
-                    fragVelocityMax = 3f;
-                    fragRandomSpread = 16f;
-                    fragLifeMin = 0.6f;
-                    fragLifeMax = 1f;
-                    despawnShake = 0f;
-                    fragOnHit = true;
-                    buildingDamageMultiplier = 0.4f;
-
-                    fragBullet = new BasicBulletType(2.5f, 10f){{
-                       width = 6f;
-                       height = 7f;
-
-                       lifetime = 40f;
-
-                       trailLength = 10;
-                       trailWidth = 1.4f;
-                       trailSinScl = 2f;
-                       trailSinMag = 0.5f;
-                       trailEffect = Fx.none;
-                       trailColor = Color.valueOf("FF6F89FF");
-
-                       frontColor = Color.valueOf("FFFFFF");
-                       backColor = Color.valueOf("D85876FF");
-
-                       fragBullets = 6;
-                       fragRandomSpread = 25f;
-                       fragVelocityMin = 0.7f;
-                       fragVelocityMax = 2f;
-                       fragLifeMin = 1f;
-                       fragLifeMax = 5f;
-                       fragOnHit = true;
-                       buildingDamageMultiplier = 0.4f;
-
-                       fragBullet = new BasicBulletType(2f, 5f){{
-                          width = 5f;
-                          height = 6f;
-
-                          lifetime = 25f;
-
-                          trailLength = 5;
-                          trailWidth = 1.2f;
-                          trailSinScl = 2f;
-                          trailSinMag = 0.5f;
-                          trailEffect = Fx.none;
-                          buildingDamageMultiplier = 0.4f;
-                       }};
-                    }};
-                }};
-            }});
+            weapons.add(getNaviculaWeapon(0, -2), getNaviculaWeapon(0, -6));
         }};
         sunrise = new UnitType("sunrise"){{
            aiController = BuilderAI::new;

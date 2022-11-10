@@ -232,18 +232,23 @@ public class StuasutBlocks {
             size = 2;
             requirements(Category.power, with(StuasutItems.zinc, 20, StuasutItems.bariumraw, 8));
             powerProduction = 0.8f;
-            drawer = new DrawMulti(new DrawDefault(), new DrawRegion("-rotator", 0.4f * 9f));
+            drawer = new DrawMulti(new DrawDefault(),
+                                   new DrawRegion("-rotator", 0.4f * 9f));
         }};
-        zincnode = new PowerNode("zinc-power-node"){{
+        zincnode = new BeamNode("zinc-power-node"){{
             requirements(Category.power, with(StuasutItems.zinc, 5, StuasutItems.bariumraw, 2));
-            maxNodes = 10;
-            laserRange = 7f;
+            consumesPower = outputsPower = true;
+            consumePowerBuffered(750f);
+            range = 12;
+            health = 90;
             researchCost = with(StuasutItems.zinc, 40, StuasutItems.bariumraw, 16);
         }};
-        zincnodelarge = new PowerNode("large-zinc-power-node"){{
+        zincnodelarge = new BeamNode("large-zinc-power-node"){{
            requirements(Category.power, with(StuasutItems.zinc, 10, StuasutItems.bariumraw, 5, StuasutItems.barium, 2));
-           maxNodes = 15;
-           laserRange = 16f;
+            consumesPower = outputsPower = true;
+            consumePowerBuffered(1500f);
+            range = 20;
+            health = 185;
         }};
         //storage
 
@@ -262,6 +267,9 @@ public class StuasutBlocks {
         //distribution
         zincDuct = new Duct("zinc-duct"){{
             requirements(Category.distribution, with(StuasutItems.zinc, 1));
+
+            hasPower = consumesPower = conductivePower = true;
+
             health = 75;
             speed = 6f;
             solid = false;
@@ -272,13 +280,11 @@ public class StuasutBlocks {
            speed = 4.5f;
            solid = false;
         }};
-        zincBridge = new BufferedItemBridge("zinc-bridge"){{
+        zincBridge = new ItemBridge("zinc-bridge"){{
             requirements(Category.distribution, with(StuasutItems.zinc, 4));
             fadeIn = moveArrows = false;
             range = 5;
-            speed = 60f;
             arrowSpacing = 5f;
-            bufferCapacity = 4;
             researchCost = with(StuasutItems.zinc, 20);
         }};
         clor = new ItemTurret("clor"){{
