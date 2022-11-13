@@ -14,7 +14,7 @@ import static mindustry.content.TechTree.*;
 //import static stus.content.StuasutSectors.*;
 
 public class StuasutTechTree {
-    public static void load(){
+    public static void load() {
         //start of tech tree - core
         StuasutPlanets.rapu.techTree = nodeRoot("stuasut", StuasutBlocks.coreDawn, () -> {
             //the first branch
@@ -25,9 +25,9 @@ public class StuasutTechTree {
                     nodeProduce(StuasutItems.cadmiumraw, () -> {
                         nodeProduce(StuasutItems.rheniumraw, () -> {
                             nodeProduce(StuasutItems.antimonyraw, () -> {
-                               nodeProduce(StuasutItems.antimony, () -> {
+                                nodeProduce(StuasutItems.antimony, () -> {
 
-                               });
+                                });
                             });
                             nodeProduce(StuasutItems.rhenium, () -> {
                             });
@@ -39,28 +39,29 @@ public class StuasutTechTree {
                     });
                 });
             });
-            node(StuasutBlocks.zinccrusher, () ->{
+            node(StuasutBlocks.zinccrusher, () -> {
                 //TODO more drills
             });
-            node(StuasutBlocks.windgenerator, () ->{
+            node(StuasutBlocks.windgenerator, () -> {
                 node(StuasutBlocks.zincnode, () -> {
-                   node(StuasutBlocks.zincnodelarge, () -> {
-                   });
+                    node(StuasutBlocks.zincnodelarge, () -> {
+                    });
                 });
             });
-            node(StuasutBlocks.zincDuct, () ->{
-                node(StuasutBlocks.bariumDuct, () ->{
+            node(StuasutBlocks.zincDuct, () -> {
+                node(StuasutBlocks.itemRouter, () -> {
+                });
+                node(StuasutBlocks.bariumDuct, () -> {
+                });
+                node(StuasutBlocks.zincBridge, () -> {
+                });
+            });
+            node(StuasutBlocks.airFactory, () -> {
+                node(StuasutUnits.navicula, () -> {
 
                 });
-                node(StuasutBlocks.zincBridge, () ->{
-                });
             });
-            node(StuasutBlocks.airFactory, () ->{
-                node(StuasutUnits.navicula, () ->{
-
-                });
-            });
-            node(StuasutBlocks.bariumForge, () ->{
+            node(StuasutBlocks.bariumForge, () -> {
                 //TODO more factories
             });
             node(StuasutBlocks.bariumWall, () -> {
@@ -68,21 +69,21 @@ public class StuasutTechTree {
                 });
                 node(StuasutBlocks.cadmiumWall, () -> {
                     node(StuasutBlocks.cadmiumWallLarge, () -> {
-                       node(StuasutBlocks.rheniumWall, () -> {
-                          node(StuasutBlocks.rheniumWallLarge, () -> {
-                          });
-                       });
-                       node(StuasutBlocks.cadmiumWallLarge, () -> {
-                       });
+                        node(StuasutBlocks.rheniumWall, () -> {
+                            node(StuasutBlocks.rheniumWallLarge, () -> {
+                            });
+                        });
+                        node(StuasutBlocks.cadmiumWallLarge, () -> {
+                        });
                     });
                 });
             });
-            node(StuasutBlocks.togis, () ->{
-                node(StuasutBlocks.clor, () ->{
+            node(StuasutBlocks.togis, () -> {
+                node(StuasutBlocks.clor, () -> {
 
                 });
-                node(StuasutBlocks.pulse, () ->{
-                    node(StuasutBlocks.collapse, () ->{
+                node(StuasutBlocks.pulse, () -> {
+                    node(StuasutBlocks.collapse, () -> {
 
                     });
                 });

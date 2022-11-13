@@ -1,4 +1,5 @@
 package stus.content;
+
 import arc.audio.Sound;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -54,7 +55,7 @@ public class StuasutBlocks {
     //furnace
 
     //production
-    zinccrusher,impulseCrusher,
+    zinccrusher, impulseCrusher,
 
     //power
     windgenerator, zincbattery, zincbatterylarge, zincnode, zincnodelarge,
@@ -63,7 +64,7 @@ public class StuasutBlocks {
     coreDawn,
 
     //distribution
-    zincBridge, zincDuct, bariumDuct,
+    zincBridge, zincDuct, bariumDuct,itemRouter,
 
     //turrets
     clor, togis, pulse, collapse,
@@ -71,7 +72,7 @@ public class StuasutBlocks {
     //units
     airFactory;
 
-    public static void load(){
+    public static void load() {
         //environment
         gert = new Floor("gert") {{
             playerUnmineable = true;
@@ -89,14 +90,14 @@ public class StuasutBlocks {
         limestone = new Floor("limestone") {{
             variants = 3;
         }};
-        slate = new StaticWall("slate-wall"){{
-           variants = 2;
+        slate = new StaticWall("slate-wall") {{
+            variants = 2;
         }};
         //boulders
-        gertBoulder = new Prop("gert-boulder"){{
-           variants = 2;
+        gertBoulder = new Prop("gert-boulder") {{
+            variants = 2;
         }};
-        limestoneBoulder = new Prop("limestone-boulder"){{
+        limestoneBoulder = new Prop("limestone-boulder") {{
             variants = 2;
         }};
         //ores
@@ -126,54 +127,54 @@ public class StuasutBlocks {
             oreScale = 23.47619f;
         }};
         //liquid
-        galliumPuddle = new Floor("gallium-puddle"){{
-           speedMultiplier = 0.25f;
-           variants = 0;
-           drownTime = 110f;
+        galliumPuddle = new Floor("gallium-puddle") {{
+            speedMultiplier = 0.25f;
+            variants = 0;
+            drownTime = 110f;
 
-           status = StuasutStatus.inGallium;
-           statusDuration = 15f * 60f;
+            status = StuasutStatus.inGallium;
+            statusDuration = 15f * 60f;
 
-           liquidDrop = Liquids.gallium;
-           isLiquid = true;
-           liquidMultiplier = 0.7f;
-           cacheLayer = CacheLayer.tar;
+            liquidDrop = Liquids.gallium;
+            isLiquid = true;
+            liquidMultiplier = 0.7f;
+            cacheLayer = CacheLayer.tar;
         }};
 
         //defence
-        bariumWall = new Wall("barium-wall"){{
+        bariumWall = new Wall("barium-wall") {{
             requirements(Category.defense, with(StuasutItems.barium, 6));
             health = 80 * 6;
             researchCostMultiplier = 0.1f;
             envDisabled |= Env.scorching;
         }};
-        bariumWallLarge = new Wall("barium-wall-large"){{
+        bariumWallLarge = new Wall("barium-wall-large") {{
             requirements(Category.defense, with(StuasutItems.barium, 24));
             health = 80 * 6 * 2;
             researchCostMultiplier = 0.1f;
             envDisabled |= Env.scorching;
             size = 2;
         }};
-        cadmiumWall = new Wall("cadmium-wall"){{
+        cadmiumWall = new Wall("cadmium-wall") {{
             requirements(Category.defense, with(StuasutItems.cadmium, 6));
             health = 80 * 10;
             researchCostMultiplier = 0.1f;
             envDisabled |= Env.scorching;
         }};
-        cadmiumWallLarge = new Wall("cadmium-wall-large"){{
+        cadmiumWallLarge = new Wall("cadmium-wall-large") {{
             requirements(Category.defense, with(StuasutItems.cadmium, 24));
             health = 80 * 8 * 2;
             researchCostMultiplier = 0.1f;
             envDisabled |= Env.scorching;
             size = 2;
         }};
-        rheniumWall = new Wall("rhenium-wall"){{
+        rheniumWall = new Wall("rhenium-wall") {{
             requirements(Category.defense, with(StuasutItems.rhenium, 6));
             health = 80 * 10;
             researchCostMultiplier = 0.1f;
             envDisabled |= Env.scorching;
         }};
-        rheniumWallLarge = new Wall("rhenium-wall-large"){{
+        rheniumWallLarge = new Wall("rhenium-wall-large") {{
             requirements(Category.defense, with(StuasutItems.rhenium, 24));
             health = 80 * 8 * 2;
             researchCostMultiplier = 0.1f;
@@ -182,7 +183,7 @@ public class StuasutBlocks {
         }};
 
         //crafting
-        bariumForge = new GenericCrafter("barium-forge"){{
+        bariumForge = new GenericCrafter("barium-forge") {{
             requirements(Category.crafting, with(StuasutItems.zinc, 70, StuasutItems.bariumraw, 30));
             health = 80;
             size = 3;
@@ -198,7 +199,7 @@ public class StuasutBlocks {
 
         //production
 
-        zinccrusher = new BurstDrill("zinc-crusher"){{
+        zinccrusher = new BurstDrill("zinc-crusher") {{
             requirements(Category.production, with(StuasutItems.zinc, 12, StuasutItems.bariumraw, 6));
             drillTime = 60f * 5f;
             size = 2;
@@ -211,7 +212,7 @@ public class StuasutBlocks {
             consumePower(20f / 60f);
         }};
         gallium.hidden = false;
-        impulseCrusher = new BurstDrill("impulse-crusher"){{
+        impulseCrusher = new BurstDrill("impulse-crusher") {{
             requirements(Category.production, with(StuasutItems.zinc, 50, StuasutItems.barium, 25, StuasutItems.cadmiumraw, 15));
             drillTime = 60f * 8f;
             size = 5;
@@ -219,8 +220,8 @@ public class StuasutBlocks {
             shake = 5f;
             itemCapacity = 150;
 
-            consumePower(90f/60f);
-            consumeLiquid(Liquids.gallium, 6f/60f);
+            consumePower(90f / 60f);
+            consumeLiquid(Liquids.gallium, 6f / 60f);
 
             drillEffect = new MultiEffect(Fx.mineImpact, Fx.drillSteam, Fx.mineImpactWave.wrap(Pal.redLight, 40f));
             //TODO remake drillEffect, after make sprites
@@ -228,14 +229,14 @@ public class StuasutBlocks {
 
         //power
 
-        windgenerator = new ConsumeGenerator("wind-generator"){{
+        windgenerator = new ConsumeGenerator("wind-generator") {{
             size = 2;
             requirements(Category.power, with(StuasutItems.zinc, 20, StuasutItems.bariumraw, 8));
             powerProduction = 0.8f;
             drawer = new DrawMulti(new DrawDefault(),
-                                   new DrawRegion("-rotator", 0.4f * 9f));
+                    new DrawRegion("-rotator", 0.4f * 9f));
         }};
-        zincnode = new BeamNode("zinc-power-node"){{
+        zincnode = new BeamNode("zinc-power-node") {{
             requirements(Category.power, with(StuasutItems.zinc, 5, StuasutItems.bariumraw, 2));
             consumesPower = outputsPower = true;
             consumePowerBuffered(750f);
@@ -243,8 +244,8 @@ public class StuasutBlocks {
             health = 90;
             researchCost = with(StuasutItems.zinc, 40, StuasutItems.bariumraw, 16);
         }};
-        zincnodelarge = new BeamNode("large-zinc-power-node"){{
-           requirements(Category.power, with(StuasutItems.zinc, 10, StuasutItems.bariumraw, 5, StuasutItems.barium, 2));
+        zincnodelarge = new BeamNode("large-zinc-power-node") {{
+            requirements(Category.power, with(StuasutItems.zinc, 10, StuasutItems.bariumraw, 5, StuasutItems.barium, 2));
             consumesPower = outputsPower = true;
             consumePowerBuffered(1500f);
             range = 20;
@@ -252,8 +253,8 @@ public class StuasutBlocks {
         }};
         //storage
 
-        coreDawn = new RegenCore("core-dawn"){{
-            requirements(Category.effect, BuildVisibility.debugOnly,with(StuasutItems.zinc, 2000, StuasutItems.bariumraw, 800));
+        coreDawn = new RegenCore("core-dawn") {{
+            requirements(Category.effect, BuildVisibility.debugOnly, with(StuasutItems.zinc, 2000, StuasutItems.bariumraw, 800));
             alwaysUnlocked = true;
 
             drawArrow = false;
@@ -265,7 +266,7 @@ public class StuasutBlocks {
             unitCapModifier = 6;
         }};
         //distribution
-        zincDuct = new Duct("zinc-duct"){{
+        zincDuct = new Duct("zinc-duct") {{
             requirements(Category.distribution, with(StuasutItems.zinc, 1));
 
             hasPower = consumesPower = conductivePower = true;
@@ -273,21 +274,36 @@ public class StuasutBlocks {
             health = 75;
             speed = 6f;
             solid = false;
+            researchCost = with(StuasutItems.zinc, 10);
         }};
-        bariumDuct = new Duct("barium-duct"){{
-           requirements(Category.distribution, with(StuasutItems.barium, 1, StuasutItems.zinc, 1));
-           health = 90;
-           speed = 4.5f;
-           solid = false;
+        itemRouter = new DuctRouter("item-router") {{
+            requirements(Category.distribution, with(StuasutItems.zinc, 6, StuasutItems.bariumraw, 4));
+
+            hasPower = consumesPower = conductivePower = true;
+
+            speed = 4f;
+            regionRotated1 = 1;
+            solid = false;
+            researchCost = with(StuasutItems.zinc, 30, StuasutItems.bariumraw, 20);
         }};
-        zincBridge = new ItemBridge("zinc-bridge"){{
+        bariumDuct = new Duct("barium-duct") {{
+            requirements(Category.distribution, with(StuasutItems.barium, 1, StuasutItems.zinc, 1));
+
+            hasPower = consumesPower = conductivePower = true;
+
+            health = 90;
+            speed = 4.5f;
+            solid = false;
+        }};
+        zincBridge = new ItemBridge("zinc-bridge") {{
             requirements(Category.distribution, with(StuasutItems.zinc, 4));
             fadeIn = moveArrows = false;
+            solid = false;
             range = 5;
             arrowSpacing = 5f;
             researchCost = with(StuasutItems.zinc, 20);
         }};
-        clor = new ItemTurret("clor"){{
+        clor = new ItemTurret("clor") {{
             requirements(Category.turret, with(
                     StuasutItems.zinc, 60,
                     StuasutItems.bariumraw, 40
@@ -302,21 +318,22 @@ public class StuasutBlocks {
             coolant = consumeCoolant(0.2f);
             outlineColor = RapuPal.rapuOutline;
             ammo(
-                    StuasutItems.zinc, new RailBulletType(){{
+                    StuasutItems.zinc, new RailBulletType() {{
                         length = 90f;
                         ammoMultiplier = 2.4f;
                         damage = 16f;
                         pierce = false;
                         hitColor = Color.valueOf("feb380");
-                        hitEffect = endEffect = Fx.hitBulletColor;;
+                        hitEffect = endEffect = Fx.hitBulletColor;
+                        ;
                         lineEffect = new Effect(20f, e -> {
-                            if(!(e.data instanceof Vec2 v)) return;
+                            if (!(e.data instanceof Vec2 v)) return;
 
                             color(Color.valueOf("8ca0b3ff"));
                             stroke(e.fout() * 0.9f + 0.6f);
 
                             Fx.rand.setSeed(e.id);
-                            for(int i = 0; i < 7; i++){
+                            for (int i = 0; i < 7; i++) {
                                 Fx.v.trns(e.rotation, Fx.rand.random(8f, v.dst(e.x, e.y) - 8f));
                                 Lines.lineAngleCenter(e.x + Fx.v.x, e.y + Fx.v.y, e.rotation + e.finpow(), e.foutpowdown() * 20f * Fx.rand.random(0.5f, 1f) + 0.3f);
                             }
@@ -331,7 +348,7 @@ public class StuasutBlocks {
             drawer = new DrawTurret("rapu-");
             researchCost = with(StuasutItems.zinc, 200, StuasutItems.bariumraw, 150);
         }};
-        togis = new ItemTurret("togis"){{
+        togis = new ItemTurret("togis") {{
             requirements(Category.turret, with(StuasutItems.zinc, 50, StuasutItems.bariumraw, 20));
             scaledHealth = 180;
             reload = 30f;
@@ -343,7 +360,7 @@ public class StuasutBlocks {
             xRand = 4f;
             targetInterval = 5f;
             ammo(
-                    StuasutItems.bariumraw, new BasicBulletType(){{
+                    StuasutItems.bariumraw, new BasicBulletType() {{
                         damage = 0f;
                         lifetime = 0f;
                         speed = 1000f;
@@ -351,7 +368,7 @@ public class StuasutBlocks {
                         fragVelocityMin = 0.7f;
                         fragRandomSpread = 70;
                         fragLifeMin = 0.6f;
-                        fragBullet =  new BasicBulletType(){{
+                        fragBullet = new BasicBulletType() {{
                             damage = 15f;
                             speed = 4f;
                             lifetime = 36f;
@@ -363,7 +380,7 @@ public class StuasutBlocks {
             drawer = new DrawTurret("rapu-");
             researchCost = with(StuasutItems.zinc, 250, StuasutItems.bariumraw, 110);
         }};
-        pulse = new ItemTurret("pulse"){{
+        pulse = new ItemTurret("pulse") {{
             requirements(Category.turret, with(StuasutItems.zinc, 90, StuasutItems.bariumraw, 40));
             scaledHealth = 210;
             reload = 35f;
@@ -373,7 +390,7 @@ public class StuasutBlocks {
             rotateSpeed = 2.6f;
             size = 2;
             ammo(
-                    StuasutItems.barium, new BasicBulletType(){{
+                    StuasutItems.barium, new BasicBulletType() {{
                         damage = 0f;
                         lifetime = 0f;
                         speed = 1000f;
@@ -381,7 +398,7 @@ public class StuasutBlocks {
                         fragVelocityMin = 0.7f;
                         fragRandomSpread = 0;
                         fragLifeMin = 0.6f;
-                        fragBullet =  new BasicBulletType(){{
+                        fragBullet = new BasicBulletType() {{
                             damage = 18f;
                             speed = 4f;
                             lifetime = 110f;
@@ -389,7 +406,7 @@ public class StuasutBlocks {
                             height = 8f;
                         }};
                     }},
-                    StuasutItems.dencealloy, new BasicBulletType(){{
+                    StuasutItems.dencealloy, new BasicBulletType() {{
                         damage = 0f;
                         lifetime = 0f;
                         speed = 1000f;
@@ -397,7 +414,7 @@ public class StuasutBlocks {
                         fragVelocityMin = 0.2f;
                         fragRandomSpread = 0;
                         fragLifeMin = 0.6f;
-                        fragBullet =  new ArtilleryBulletType(){{
+                        fragBullet = new ArtilleryBulletType() {{
                             damage = 29f;
                             speed = 3.5f;
                             lifetime = 130f;
@@ -408,7 +425,7 @@ public class StuasutBlocks {
             drawer = new DrawTurret("rapu-");
             researchCost = with(StuasutItems.zinc, 500, StuasutItems.bariumraw, 220);
         }};
-        collapse = new ItemTurret("collapse"){{
+        collapse = new ItemTurret("collapse") {{
             requirements(Category.turret, with(StuasutItems.zinc, 110, StuasutItems.barium, 50, StuasutItems.dencealloy, 35));
             scaledHealth = 240;
             reload = 130f;
@@ -419,7 +436,7 @@ public class StuasutBlocks {
             size = 3;
             targetAir = false;
             ammo(
-                    StuasutItems.barium, new BasicBulletType(){{
+                    StuasutItems.barium, new BasicBulletType() {{
                         damage = 0f;
                         lifetime = 0f;
                         speed = 1000f;
@@ -427,7 +444,7 @@ public class StuasutBlocks {
                         fragVelocityMin = 0.7f;
                         fragRandomSpread = 0;
                         fragLifeMin = 0.6f;
-                        fragBullet =  new BasicBulletType(){{
+                        fragBullet = new BasicBulletType() {{
                             damage = 56f;
                             speed = 4f;
                             lifetime = 110f;
@@ -435,7 +452,7 @@ public class StuasutBlocks {
                             height = 12f;
                         }};
                     }},
-                    StuasutItems.dencealloy, new BasicBulletType(){{
+                    StuasutItems.dencealloy, new BasicBulletType() {{
                         damage = 0f;
                         lifetime = 0f;
                         speed = 1000f;
@@ -443,7 +460,7 @@ public class StuasutBlocks {
                         fragVelocityMin = 0.4f;
                         fragRandomSpread = 0;
                         fragLifeMin = 0.9f;
-                        fragBullet =  new BasicBulletType(){{
+                        fragBullet = new BasicBulletType() {{
                             damage = 63f;
                             speed = 3.5f;
                             lifetime = 130f;
@@ -455,7 +472,7 @@ public class StuasutBlocks {
             researchCost = with(StuasutItems.zinc, 550, StuasutItems.barium, 250, StuasutItems.dencealloy, 175);
         }};
         //units
-        airFactory = new UnitFactory("air-fuck"){{
+        airFactory = new UnitFactory("air-fuck") {{
             requirements(Category.units, with(StuasutItems.zinc, 130, StuasutItems.barium, 70));
             size = 3;
             plans.add(new UnitPlan(StuasutUnits.navicula, 60f * 34f, with(StuasutItems.zinc, 30, StuasutItems.barium, 20)));

@@ -12,8 +12,11 @@ import stus.graphics.RapuPal;
 public class StuasutUnits {
     public static UnitType
 
-    //unit
-    navicula, sunrise;
+    //units
+    navicula,
+
+    //core units
+    sunrise;
 
     public static BasicBulletType naviculaBullet = new BasicBulletType(3, 30){{
 
@@ -121,7 +124,7 @@ public class StuasutUnits {
             lowAltitude = true;
             itemCapacity = 10;
 
-            weapons.add(getNaviculaWeapon(0, -2), getNaviculaWeapon(0, -6));
+            weapons.add(getNaviculaWeapon(0, -2));
         }};
         sunrise = new UnitType("sunrise"){{
            aiController = BuilderAI::new;
@@ -174,5 +177,5 @@ public class StuasutUnits {
                }};
            }});
         }};
-    }//TODO make core unit
+    }
 }
