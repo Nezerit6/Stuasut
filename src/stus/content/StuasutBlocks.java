@@ -1,15 +1,13 @@
 package stus.content;
 
-import arc.audio.Sound;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.geom.Vec2;
+import arc.struct.Seq;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
-import mindustry.entities.part.*;
-import mindustry.entities.pattern.*;
 import mindustry.graphics.CacheLayer;
 import mindustry.graphics.*;
 import mindustry.type.*;
@@ -26,6 +24,7 @@ import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import stus.graphics.*;
 import stus.world.blocks.storage.*;
+import multicraft.*;
 
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
@@ -35,8 +34,8 @@ import static mindustry.type.ItemStack.*;
 
 public class StuasutBlocks {
     public static Block
-    //environment
-    gertwall, limestonewall, gert, limestone, mercurymud, slate,
+            //environment
+            gertwall, limestonewall, gert, limestone, mercurymud, slate,
 
     //boulders
     gertBoulder, limestoneBoulder,
@@ -64,7 +63,7 @@ public class StuasutBlocks {
     coreDawn,
 
     //distribution
-    zincBridge, zincDuct, bariumDuct,itemRouter,
+    zincBridge, zincDuct, bariumDuct, itemRouter,
 
     //turrets
     clor, togis, pulse, collapse,
@@ -183,18 +182,42 @@ public class StuasutBlocks {
         }};
 
         //crafting
-        bariumForge = new GenericCrafter("barium-forge") {{
+        bariumForge = new MultiCrafter("barium-forge") {{
             requirements(Category.crafting, with(StuasutItems.zinc, 70, StuasutItems.bariumraw, 30));
             health = 80;
             size = 3;
             craftEffect = new MultiEffect(Fx.pointShockwave, Fx.pointShockwave);
-            outputItem = new ItemStack(StuasutItems.barium, 3);
-            craftTime = 180f;
-            itemCapacity = 10;
-            drawer = new DrawMulti(new DrawDefault(), new DrawFlame());
+            resolvedRecipes = Seq.with(
+            /** new Recipe(
+             new IOEntry(
+             Seq.with(ItemStack.with(
+             StuasutItems.bariumraw, 3
+             )),
+             Seq.with(),
+             1.5f),
+             new IOEntry(
+             Seq.with(ItemStack.with(
+             StuasutItems.barium, 1
+             )),
+             );*/
+            new Recipe(
+                    new IOEntry(
+                            Seq.with(ItemStack.with(
+                                    StuasutItems.bariumraw, 3
+                            )),
+                            Seq.with(),
+                            1.5f),
 
-            consumePower(2.3f);
-            consumeItems(with(StuasutItems.bariumraw, 3));
+                    new IOEntry(
+                            Seq.with(ItemStack.with(
+                                    StuasutItems.barium, 1
+                            )),
+                            Seq.with()),
+                    120f
+            ));
+
+                    itemCapacity = 10;
+            drawer = new DrawMulti(new DrawDefault(), new DrawFlame());
         }};
 
         //production
@@ -232,7 +255,7 @@ public class StuasutBlocks {
         windgenerator = new ConsumeGenerator("wind-generator") {{
             size = 2;
             requirements(Category.power, with(StuasutItems.zinc, 20, StuasutItems.bariumraw, 8));
-            powerProduction = 0.8f;
+            powerProduction = 1f;
             drawer = new DrawMulti(new DrawDefault(),
                     new DrawRegion("-rotator", 0.4f * 9f));
         }};
@@ -272,7 +295,7 @@ public class StuasutBlocks {
             hasPower = consumesPower = conductivePower = true;
 
             health = 75;
-            speed = 6f;
+            speed = 5f;
             solid = false;
             researchCost = with(StuasutItems.zinc, 10);
         }};
@@ -281,7 +304,7 @@ public class StuasutBlocks {
 
             hasPower = consumesPower = conductivePower = true;
 
-            speed = 4f;
+            speed = 3.5f;
             regionRotated1 = 1;
             solid = false;
             researchCost = with(StuasutItems.zinc, 30, StuasutItems.bariumraw, 20);
@@ -292,11 +315,12 @@ public class StuasutBlocks {
             hasPower = consumesPower = conductivePower = true;
 
             health = 90;
-            speed = 4.5f;
+            speed = 4f;
             solid = false;
         }};
         zincBridge = new ItemBridge("zinc-bridge") {{
             requirements(Category.distribution, with(StuasutItems.zinc, 4));
+            hasPower = false;
             fadeIn = moveArrows = false;
             solid = false;
             range = 5;
