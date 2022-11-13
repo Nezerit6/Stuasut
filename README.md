@@ -1,5 +1,5 @@
 # **Stuasut**
-## **This mod use liplum/MulticrafterLib**
+## **This mod use [liplum/MulticrafterLib](https://github.com/liplum/MultiCrafterLib)**
 This mod is __under development__, If an error occurs, don't be surprised.
 The development of the mod is carried out by 2, previously 3 developers:
 - KirillRum
