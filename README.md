@@ -8,3 +8,6 @@ The development of the mod is carried out by 2, previously 3 developers:
 
 ## Description
 The mod is written in the Java programming language and is still in development ~~and it is unlikely to be finished)))~~.
+
+## Sociality
+[Discord](https://discord.gg/3FsH3jdJsF)
