@@ -5,5 +5,5 @@ main: "stus.Stuasut"
 dependencies: ["multi-crafter"]
 description: "no"
 version: 0.1
-minGameVersion: 139
+minGameVersion: 140.3
 java: true

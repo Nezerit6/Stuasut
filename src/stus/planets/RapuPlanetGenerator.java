@@ -19,8 +19,6 @@ import mindustry.world.*;
 import static mindustry.Vars.*;
 public class RapuPlanetGenerator extends PlanetGenerator {
 
-	String launchSchem = "bXNjaAF4nGNgYWBhZmDJS8xNZeDNyU9MyS8tCU7OSAVyuVNSi5OLMgtKMvPzGBgY2HISk1JzihmYomMZGfiKS0qLdZPzi1J1UxLLQdKMIMTIwAwAfS0Ufg==";
-
 	RapuBase basegen = new RapuBase();
 	public static final int seed = 29;
 	public static int widthSeed = 1, heightSeed = 2, roomSeed = 3, strokeSeed = 4;
@@ -35,6 +33,9 @@ public class RapuPlanetGenerator extends PlanetGenerator {
 			StuasutBlocks.mercurymud,
 			StuasutBlocks.mercurymud,
 	};
+	{
+		defaultLoadout = StuasutSchematics.basicDawn;
+	}
 	ObjectMap<Block, Block> dec = ObjectMap.of(
 			StuasutBlocks.gert, StuasutBlocks.gertBoulder,
 			StuasutBlocks.limestone, StuasutBlocks.limestoneBoulder
@@ -294,7 +295,7 @@ public class RapuPlanetGenerator extends PlanetGenerator {
 				break;
 			}
 		}
-		Schematics.placeLoadout(Schematics.readBase64(launchSchem), spawnX, spawnY, Team.sharded);
+		Schematics.placeLaunchLoadout(spawn.x, spawn.y);
 
 		tiles.getn(r.get(1).x, r.get(1).y).setOverlay(Blocks.spawn);
 
@@ -310,11 +311,6 @@ public class RapuPlanetGenerator extends PlanetGenerator {
 		state.rules.winWave = sector.info.winWave = 10 + 5 * (int)Math.max(sector.threat * 12, 1);
 		state.rules.waves = sector.info.waves = true;
 		state.rules.env = sector.planet.defaultEnv;
-	}
-
-	@Override
-	public Schematic getDefaultLoadout() {
-		return Schematics.readBase64(launchSchem);
 	}
 
 	@Override
