@@ -161,7 +161,7 @@ public class StuasutUnits {
 
                ejectEffect = Fx.none;
 
-               bullet = new MissileBulletType(3.6f, 24){{
+               bullet = new MissileBulletType(3.6f, 18){{
                   width = 7f;
                   height = 9f;
 

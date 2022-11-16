@@ -8,7 +8,7 @@ import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
-import mindustry.graphics.CacheLayer;
+import mindustry.gen.Sounds;
 import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
@@ -43,7 +43,7 @@ public class StuasutBlocks {
     oreZinc, oreBarium, oreCadmium, oreRhenium, oreAntimony,
 
     //liquid
-    galliumPuddle,
+    galliumPuddle, diethylEtherPuddle, zincPump,
 
     //defence
     bariumWall, bariumWallLarge, cadmiumWall, cadmiumWallLarge, rheniumWall, rheniumWallLarge,
@@ -57,7 +57,7 @@ public class StuasutBlocks {
     zinccrusher, impulseCrusher,
 
     //power
-    windgenerator, zincbattery, zincbatterylarge, zincnode, zincnodelarge,
+    windgenerator, convector, zincbattery, zincbatterylarge, zincnode, zincnodelarge,
 
     //storage
     coreDawn,
@@ -101,33 +101,28 @@ public class StuasutBlocks {
         }};
         //ores
         oreZinc = new OreBlock(StuasutItems.zinc) {{
-            oreDefault = true;
             oreThreshold = 0.81f;
             oreScale = 23.47619f;
         }};
         oreBarium = new OreBlock(StuasutItems.bariumraw) {{
-            oreDefault = true;
-            oreThreshold = 0.81f;
-            oreScale = 23.47619f;
+            oreThreshold = 0.828f;
+            oreScale = 23.952381f;
         }};
         oreCadmium = new OreBlock(StuasutItems.cadmiumraw) {{
-            oreDefault = true;
-            oreThreshold = 0.81f;
-            oreScale = 23.47619f;
+            oreThreshold = 0.864f;
+            oreScale = 24.904762f;
         }};
         oreRhenium = new OreBlock(StuasutItems.rheniumraw) {{
-            oreDefault = true;
-            oreThreshold = 0.81f;
-            oreScale = 23.47619f;
+            oreThreshold = 0.864f;
+            oreScale = 24.904762f;
         }};
         oreAntimony = new OreBlock(StuasutItems.antimonyraw) {{
-            oreDefault = true;
-            oreThreshold = 0.81f;
-            oreScale = 23.47619f;
+            oreThreshold = 0.882f;
+            oreScale = 25.380953f;
         }};
         //liquid
         galliumPuddle = new Floor("gallium-puddle") {{
-            speedMultiplier = 0.25f;
+            speedMultiplier = 0.55f;
             variants = 0;
             drownTime = 110f;
 
@@ -138,6 +133,19 @@ public class StuasutBlocks {
             isLiquid = true;
             liquidMultiplier = 0.7f;
             cacheLayer = CacheLayer.tar;
+        }};
+        diethylEtherPuddle = new Floor("diethyl-ether-puddle") {{
+            speedMultiplier = 0.35f;
+            variants = 0;
+            drownTime = 110f;
+
+            status = StuasutStatus.inDiethylEther;
+            statusDuration = 15f * 60f;
+
+            liquidDrop = StuasutLiquids.diethylEther;
+            isLiquid = true;
+            liquidMultiplier = 1f;
+            cacheLayer = CacheLayer.water;
         }};
 
         //defence
@@ -188,35 +196,35 @@ public class StuasutBlocks {
             size = 3;
             craftEffect = new MultiEffect(Fx.pointShockwave, Fx.pointShockwave);
             resolvedRecipes = Seq.with(
-            /** new Recipe(
-             new IOEntry(
-             Seq.with(ItemStack.with(
-             StuasutItems.bariumraw, 3
-             )),
-             Seq.with(),
-             1.5f),
-             new IOEntry(
-             Seq.with(ItemStack.with(
-             StuasutItems.barium, 1
-             )),
-             );*/
-            new Recipe(
-                    new IOEntry(
-                            Seq.with(ItemStack.with(
-                                    StuasutItems.bariumraw, 3
-                            )),
-                            Seq.with(),
-                            1.5f),
+                    /** new Recipe(
+                     new IOEntry(
+                     Seq.with(ItemStack.with(
+                     StuasutItems.bariumraw, 3
+                     )),
+                     Seq.with(),
+                     1.5f),
+                     new IOEntry(
+                     Seq.with(ItemStack.with(
+                     StuasutItems.barium, 1
+                     )),
+                     );*/
+                    new Recipe(
+                            new IOEntry(
+                                    Seq.with(ItemStack.with(
+                                            StuasutItems.bariumraw, 3
+                                    )),
+                                    Seq.with(),
+                                    1.5f),
 
-                    new IOEntry(
-                            Seq.with(ItemStack.with(
-                                    StuasutItems.barium, 1
-                            )),
-                            Seq.with()),
-                    120f
-            ));
+                            new IOEntry(
+                                    Seq.with(ItemStack.with(
+                                            StuasutItems.barium, 1
+                                    )),
+                                    Seq.with()),
+                            120f
+                    ));
 
-                    itemCapacity = 10;
+            itemCapacity = 10;
             drawer = new DrawMulti(new DrawDefault(), new DrawFlame());
         }};
 
@@ -258,6 +266,18 @@ public class StuasutBlocks {
             powerProduction = 1f;
             drawer = new DrawMulti(new DrawDefault(),
                     new DrawRegion("-rotator", 0.4f * 9f));
+        }};
+        convector = new ImpactReactor("convector") {{
+            requirements(Category.power, with(StuasutItems.zinc, 45, StuasutItems.bariumraw, 20, StuasutItems.barium, 30));
+            powerProduction = 420f / 60f;
+            health = 375;
+            size = 3;
+            ambientSound = Sounds.smelter;
+            ambientSoundVolume = 0.06f;
+            warmupSpeed = 0.15f;
+
+            consumePower(90f / 60f);
+            consumeLiquid(StuasutLiquids.diethylEther, 12f / 60f);
         }};
         zincnode = new BeamNode("zinc-power-node") {{
             requirements(Category.power, with(StuasutItems.zinc, 5, StuasutItems.bariumraw, 2));

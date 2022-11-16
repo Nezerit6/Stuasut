@@ -4,8 +4,6 @@ import arc.graphics.*;
 import arc.struct.*;
 import mindustry.type.*;
 
-import static mindustry.content.Items.*;
-
 public class StuasutItems {
     public static Item zinc, bariumraw, barium, cadmiumraw, cadmium, rheniumraw, rhenium, antimonyraw, antimony, dencealloy;
 

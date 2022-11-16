@@ -40,7 +40,8 @@ public class StuasutTechTree {
                 });
             });
             node(StuasutBlocks.zinccrusher, () -> {
-                //TODO more drills
+                node(StuasutBlocks.impulseCrusher, () -> {
+                });
             });
             node(StuasutBlocks.windgenerator, () -> {
                 node(StuasutBlocks.zincnode, () -> {

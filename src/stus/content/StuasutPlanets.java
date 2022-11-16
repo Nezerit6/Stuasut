@@ -12,6 +12,8 @@ public class StuasutPlanets {
     public static Planet
     rapu;
     public static void load(){
+        Planets.serpulo.hiddenItems.addAll(Vars.content.items()).removeAll(Items.serpuloItems);
+        Planets.erekir.hiddenItems.addAll(Vars.content.items()).removeAll(Items.erekirItems);
          rapu = new Planet("rapu", Planets.sun, 1f, 3){{
             defaultCore = StuasutBlocks.coreDawn;
             sectorSeed = 3;

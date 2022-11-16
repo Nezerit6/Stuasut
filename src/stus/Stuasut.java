@@ -14,8 +14,6 @@ import stus.content.*;
 
 public class Stuasut extends Mod{
 
-    public static Seq<Item> hiddenItems;
-
     public Stuasut(){
         Log.info("Loaded Stuasut constructor.");
 
@@ -52,6 +50,7 @@ public class Stuasut extends Mod{
 
         StuasutStatus.load();
         StuasutItems.load();
+        StuasutLiquids.load();
         StuasutUnits.load();
         StuasutBlocks.load();
         StuasutPlanets.load();
