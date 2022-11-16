@@ -6,7 +6,6 @@ import arc.math.geom.*;
 import arc.struct.*;
 import arc.util.*;
 import arc.util.noise.*;
-import stus.Stuasut;
 import stus.content.*;
 import mindustry.ai.*;
 import mindustry.ai.Astar.*;
@@ -27,20 +26,23 @@ public class RapuPlanetGenerator extends PlanetGenerator {
     public static final int seed = 29;
     public static int widthSeed = 1, heightSeed = 2, roomSeed = 3, strokeSeed = 4;
 
-    public Block[] arr = {
-            StuasutBlocks.gert,
-            StuasutBlocks.limestone,
-            StuasutBlocks.limestone,
-            StuasutBlocks.gert,
-            Blocks.stone,
-            StuasutBlocks.gert,
-            StuasutBlocks.mercurymud,
-            StuasutBlocks.mercurymud,
-    };
-    ObjectMap<Block, Block> dec = ObjectMap.of(
-            StuasutBlocks.gert, StuasutBlocks.gertBoulder,
-            StuasutBlocks.limestone, StuasutBlocks.limestoneBoulder
-    );
+	public Block[] arr = {
+			StuasutBlocks.gert,
+			StuasutBlocks.limestone,
+			StuasutBlocks.limestone,
+			StuasutBlocks.gert,
+			Blocks.stone,
+			StuasutBlocks.gert,
+			StuasutBlocks.mercurymud,
+			StuasutBlocks.mercurymud,
+	};
+	{
+		defaultLoadout = StuasutSchematics.basicDawn;
+	}
+	ObjectMap<Block, Block> dec = ObjectMap.of(
+			StuasutBlocks.gert, StuasutBlocks.gertBoulder,
+			StuasutBlocks.limestone, StuasutBlocks.limestoneBoulder
+	);
 
     float rawHeight(Vec3 pos) {
         return Simplex.noise3d(seed, 13, 0.6f, 0.9f, pos.x, pos.y, pos.z);
