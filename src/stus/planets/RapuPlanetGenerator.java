@@ -331,11 +331,6 @@ public class RapuPlanetGenerator extends PlanetGenerator {
     }
 
     @Override
-    public Schematic getDefaultLoadout() {
-        return Schematics.readBase64(launchSchem);
-    }
-
-    @Override
     public void postGenerate(Tiles tiles) {
     }
 
