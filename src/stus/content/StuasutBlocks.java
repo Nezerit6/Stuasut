@@ -8,9 +8,13 @@ import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
+import mindustry.entities.pattern.ShootSpread;
 import mindustry.gen.Sounds;
+import mindustry.gen.TimedKillUnit;
+import mindustry.gen.UnitEntity;
 import mindustry.graphics.*;
 import mindustry.type.*;
+import mindustry.type.unit.MissileUnitType;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.defense.turrets.*;
@@ -66,7 +70,7 @@ public class StuasutBlocks {
     zincBridge, zincDuct, bariumDuct, itemRouter,
 
     //turrets
-    clor, togis, pulse, collapse,
+    clor, togis, pulse, collapse, landAir, landAirLaser, landAirMinigun,
 
     //units
     airFactory;
@@ -297,7 +301,7 @@ public class StuasutBlocks {
         //storage
 
         coreDawn = new RegenCore("core-dawn") {{
-            requirements(Category.effect, BuildVisibility.debugOnly, with(StuasutItems.zinc, 2000, StuasutItems.bariumraw, 800));
+            requirements(Category.effect, with(StuasutItems.zinc, 2000, StuasutItems.bariumraw, 800));
             alwaysUnlocked = true;
 
             drawArrow = false;
@@ -514,6 +518,137 @@ public class StuasutBlocks {
                     }});
             drawer = new DrawTurret("rapu-");
             researchCost = with(StuasutItems.zinc, 550, StuasutItems.barium, 250, StuasutItems.dencealloy, 175);
+        }};
+        landAir = new ItemTurret("land-air") {{
+            requirements(Category.turret, with(StuasutItems.zinc, 160, StuasutItems.barium, 120, StuasutItems.bariumraw, 90));
+            scaledHealth = 250;
+            reload = 80f;
+            range = 100f;
+            recoil = 2f;
+            rotateSpeed = 2f;
+            size = 3;
+            ammo(
+                    StuasutItems.barium, new BasicBulletType(){{
+                        damage = 0f;
+                        lifetime = 0f;
+                        speed = 1000f;
+                        spawnUnit = new MissileUnitType("basic-sentinel"){{
+
+                                speed = 1.4f;
+                                rotateSpeed = 4f;
+                                maxRange = 40f;
+                                lifetime = 60f * 3.2f;
+                                health = 200;
+                                loopSoundVolume = 0.1f;
+                                constructor = TimedKillUnit::create;
+                                collidesTeam = true;
+
+                                weapons.add(new Weapon("stus-basic-sentinel-weapon") {{
+                                    x = 0f;
+                                    rotate = true;
+                                    rotateSpeed = 8f;
+                                    mirror = false;
+                                    reload = 30f;
+                                    bullet = new BasicBulletType() {{
+                                        damage = 8f;
+                                        speed = 4f;
+                                        lifetime = 10f;
+                                        width = 5f;
+                                        height = 7f;
+                                    }};
+                                }});
+                            }};
+                        }});
+            drawer = new DrawTurret("rapu-");
+            researchCost = with(StuasutItems.zinc, 800, StuasutItems.barium, 600, StuasutItems.bariumraw, 450);
+        }};
+        landAirLaser = new ItemTurret("land-air-laser") {{
+            requirements(Category.turret, with(StuasutItems.zinc, 180, StuasutItems.cadmium, 80, StuasutItems.cadmiumraw, 85));
+            scaledHealth = 250;
+            reload = 140f;
+            range = 100f;
+            recoil = 2f;
+            rotateSpeed = 2f;
+            size = 3;
+            ammo(
+                    StuasutItems.cadmium, new BasicBulletType(){{
+                        damage = 0f;
+                        lifetime = 0f;
+                        speed = 1000f;
+                        spawnUnit = new MissileUnitType("laser-sentinel"){{
+
+                            speed = 1.55f;
+                            rotateSpeed = 4f;
+                            maxRange = 40f;
+                            lifetime = 60f * 3.2f;
+                            health = 160;
+                            loopSoundVolume = 0.1f;
+                            constructor = TimedKillUnit::create;
+                            collidesTeam = true;
+
+                            weapons.add(new Weapon("stus-laser-sentinel-weapon") {{
+                                x = 0f;
+                                rotate = true;
+                                rotateSpeed = 8f;
+                                mirror = false;
+                                reload = 60f;
+                                continuous = true;
+                                bullet = new ContinuousLaserBulletType() {{
+                                    damage = 4f;
+                                    speed = 0f;
+                                    lifetime = 60f;
+                                    width = 2f;
+                                    length = 40f;
+                                    pierceCap = 1;
+
+                                }};
+                            }});
+                        }};
+                    }});
+            drawer = new DrawTurret("rapu-");
+            researchCost = with(StuasutItems.zinc, 900, StuasutItems.cadmium, 400, StuasutItems.cadmiumraw, 425);
+        }};
+        landAirMinigun = new ItemTurret("land-air-minigun") {{
+            requirements(Category.turret, with(StuasutItems.zinc, 260, StuasutItems.cadmium, 80, StuasutItems.rheniumraw, 120));
+            scaledHealth = 250;
+            reload = 120f;
+            range = 100f;
+            recoil = 2f;
+            rotateSpeed = 2f;
+            size = 3;
+            ammo(
+                    StuasutItems.rheniumraw, new BasicBulletType(){{
+                        damage = 0f;
+                        lifetime = 0f;
+                        speed = 1000f;
+                        spawnUnit = new MissileUnitType("minigun-sentinel"){{
+                            speed = 1.15f;
+                            rotateSpeed = 4f;
+                            maxRange = 50f;
+                            lifetime = 60f * 4.6f;
+                            health = 300;
+                            loopSoundVolume = 0.1f;
+                            constructor = TimedKillUnit::create;
+                            collidesTeam = true;
+
+                            weapons.add(new Weapon("stus-minigun-sentinel-weapon") {{
+                                x = 0f;
+                                rotate = true;
+                                rotateSpeed = 8f;
+                                mirror = false;
+                                reload = 10f;
+                                bullet = new BasicBulletType() {{
+                                    damage = 5f;
+                                    speed = 5f;
+                                    lifetime = 10f;
+                                    width = 5f;
+                                    height = 7f;
+                                }};
+                            }});
+                        }};
+                    }});
+            drawer = new DrawTurret("rapu-");
+            researchCost = with(StuasutItems.zinc, 1300, StuasutItems.cadmium, 400, StuasutItems.rheniumraw, 600);
         }};
         //units
         airFactory = new UnitFactory("air-fuck") {{
