@@ -23,6 +23,7 @@ import mindustry.world.blocks.units.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import stus.graphics.*;
+import stus.world.blocks.effects.*;
 import stus.world.blocks.storage.*;
 import multicraft.*;
 
@@ -35,7 +36,7 @@ import static mindustry.type.ItemStack.*;
 public class StuasutBlocks {
     public static Block
             //environment
-            gertwall, limestonewall, gert, limestone, mercurymud, slate,
+            gertwall, limestonewall, gert, limestone, mercurymud, slateWall, slate,
 
     //boulders
     gertBoulder, limestoneBoulder,
@@ -55,6 +56,9 @@ public class StuasutBlocks {
 
     //production
     zinccrusher, impulseCrusher,
+
+    //effects
+    polygonForceProjector,
 
     //power
     windgenerator, convector, zincbattery, zincbatterylarge, zincnode, zincnodelarge,
@@ -89,8 +93,11 @@ public class StuasutBlocks {
         limestone = new Floor("limestone") {{
             variants = 3;
         }};
-        slate = new StaticWall("slate-wall") {{
+        slateWall = new StaticWall("slate-wall") {{
             variants = 2;
+        }};
+        slate = new Floor("slate"){{
+            variants = 3;
         }};
         //boulders
         gertBoulder = new Prop("gert-boulder") {{
@@ -256,6 +263,39 @@ public class StuasutBlocks {
 
             drillEffect = new MultiEffect(Fx.mineImpact, Fx.drillSteam, Fx.mineImpactWave.wrap(Pal.redLight, 40f));
             //TODO remake drillEffect, after make sprites
+        }};
+
+        //effects
+        polygonForceProjector = new PolyForceProjector("polygon-force-projector"){{
+            requirements(Category.effect, with());
+            size = 3;
+            shieldHealth = 800f;
+            hasPower = true;
+            consumesPower = true;
+            consumePower(420f/60f);
+            cooldownNormal = 1f;
+            polygon = new float[]{
+                    //right side
+                    0f, -64f,
+                    24f, -56f,
+                    40f, -40f,
+                    56f, -8f,
+                    56f, 64f,
+                    40f, 64f,
+                    32f, 56f,
+                    16f, 56f,
+                    8f, 64f,
+                    //left side
+                    -8f, 64f,
+                    -16f, 56f,
+                    -32f, 56f,
+                    -40f, 64f,
+                    -56f, 64f,
+                    -56f, -8f,
+                    -40f, -40f,
+                    -24f, -56f,
+                    0f, -64f
+            };
         }};
 
         //power

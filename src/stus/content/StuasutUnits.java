@@ -43,7 +43,7 @@ public class StuasutUnits {
         fragLifeMax = 1f;
         despawnShake = 0f;
         fragOnHit = true;
-        buildingDamageMultiplier = 0.3f;
+        buildingDamageMultiplier = 0.65f;
 
         fragBullet = new BasicBulletType(2.5f, 10f){{
             width = 6f;
@@ -68,7 +68,7 @@ public class StuasutUnits {
             fragLifeMin = 1f;
             fragLifeMax = 5f;
             fragOnHit = true;
-            buildingDamageMultiplier = 0.4f;
+            buildingDamageMultiplier = 0.65f;
 
             fragBullet = new BasicBulletType(2f, 5f){{
                 width = 5f;
@@ -85,7 +85,7 @@ public class StuasutUnits {
 
                 frontColor = Color.valueOf("FFFFFF");
                 backColor = Color.valueOf("D85876FF");
-                buildingDamageMultiplier = 0.3f;
+                buildingDamageMultiplier = 0.65f;
             }};
         }};
     }};
