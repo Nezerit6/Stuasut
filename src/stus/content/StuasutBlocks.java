@@ -20,6 +20,7 @@ import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.distribution.*;
 import mindustry.world.blocks.environment.*;
+import mindustry.world.blocks.liquid.*;
 import mindustry.world.blocks.power.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.storage.*;
@@ -48,7 +49,7 @@ public class StuasutBlocks {
     oreZinc, oreBarium, oreCadmium, oreRhenium, oreAntimony,
 
     //liquid
-    galliumPuddle, diethylEtherPuddle, zincPump,
+    galliumPuddle, diethylEtherPuddle, zincPump, anodizedConduit, anodizedRouter, anodizedJunction, anodizedBridge, zincLiquidContainer, zincLiquidTank,
 
     //defence
     bariumWall, bariumWallLarge, cadmiumWall, cadmiumWallLarge, rheniumWall, rheniumWallLarge,
@@ -100,7 +101,7 @@ public class StuasutBlocks {
         slateWall = new StaticWall("slate-wall") {{
             variants = 2;
         }};
-        slate = new Floor("slate"){{
+        slate = new Floor("slate") {{
             variants = 3;
         }};
         //boulders
@@ -142,7 +143,7 @@ public class StuasutBlocks {
 
             liquidDrop = Liquids.gallium;
             isLiquid = true;
-            liquidMultiplier = 0.7f;
+            liquidMultiplier = 0.8f;
             cacheLayer = CacheLayer.tar;
         }};
         diethylEtherPuddle = new Floor("diethyl-ether-puddle") {{
@@ -157,6 +158,66 @@ public class StuasutBlocks {
             isLiquid = true;
             liquidMultiplier = 1f;
             cacheLayer = CacheLayer.water;
+        }};
+        zincPump = new Pump("zinc-pump") {{
+            requirements(Category.liquid, with(StuasutItems.zinc, 15, StuasutItems.barium, 18));
+            pumpAmount = 12f / 60f;
+            liquidCapacity = 24f;
+            size = 1;
+        }};
+        anodizedConduit = new Conduit("anodized-conduit") {{
+            requirements(Category.liquid, with(StuasutItems.barium, 1));
+            buildCost = 0.01f / 60f;
+            liquidCapacity = 24f;
+            liquidPressure = 1.1f;
+            health = 175;
+        }};
+        anodizedRouter = new LiquidRouter("anodized-liquid-router") {{
+            requirements(Category.liquid, with(StuasutItems.zinc, 8, StuasutItems.barium, 5));
+            buildCost = 0.01f / 60f;
+            liquidCapacity = 38f;
+            liquidPadding = 3f / 4f;
+            underBullets = true;
+            solid = false;
+            health = 85;
+        }};
+        anodizedJunction = new LiquidJunction("anodized-liquid-junction") {{
+            requirements(Category.liquid, with(StuasutItems.zinc, 5, StuasutItems.barium, 8));
+            buildCost = 0.01f / 60f;
+            health = 75;
+            researchCostMultiplier = 2;
+            solid = false;
+            underBullets = true;
+
+            ((Conduit)StuasutBlocks.anodizedConduit).junctionReplacement = this;
+        }};
+        anodizedBridge = new DirectionLiquidBridge("anodized-bridge-conduit"){{
+            requirements(Category.liquid, with(StuasutItems.zinc, 20, StuasutItems.barium, 10));
+            range = 6;
+            health = 95;
+            hasPower = false;
+            researchCostMultiplier = 2;
+            //I just hate these bridge conduit on Erekir and decided to make them not solid
+            solid = false;
+            underBullets = true;
+
+            ((Conduit)StuasutBlocks.anodizedConduit).rotBridgeReplacement = this;
+        }};
+        zincLiquidContainer = new LiquidRouter("zinc-liquid-containter"){{
+           requirements(Category.liquid, with(StuasutItems.zinc, 25, StuasutItems.bariumraw, 15, StuasutItems.barium, 12));
+           liquidCapacity = 1250f;
+           size = 2;
+           liquidPadding = 6f/4f;
+           researchCostMultiplier = 4;
+           solid = true;
+        }};
+        zincLiquidTank = new LiquidRouter("zinc-liquid-tank"){{
+            requirements(Category.liquid, with(StuasutItems.zinc, 50, StuasutItems.bariumraw, 30, StuasutItems.barium, 24));
+            liquidCapacity = 3000f;
+            size = 3;
+            liquidPadding = 2f;
+            researchCostMultiplier = 3;
+            solid = true;
         }};
 
         //defence
@@ -270,13 +331,13 @@ public class StuasutBlocks {
         }};
 
         //effects
-        polygonForceProjector = new PolyForceProjector("polygon-force-projector"){{
+        polygonForceProjector = new PolyForceProjector("polygon-force-projector") {{
             requirements(Category.effect, with());
             size = 3;
             shieldHealth = 800f;
             hasPower = true;
             consumesPower = true;
-            consumePower(420f/60f);
+            consumePower(420f / 60f);
             cooldownNormal = 1f;
             polygon = new float[]{
                     //right side
@@ -524,6 +585,36 @@ public class StuasutBlocks {
             size = 3;
             targetAir = false;
             ammo(
+                    /*StuasutItems.barium, new BasicBulletType() {{
+                        shootEffect = Fx.shootPyraFlame;
+                        smokeEffect = Fx.shootSmokeTitan;
+                        hitColor = Pal.surge;
+
+                        sprite = "large-bomb";
+                        trailEffect = Fx.missileTrailShort;
+                        trailInterval = 3f;
+                        trailParam = 4f;
+                        fragOnHit = true;
+                        speed = 4.5f;
+                        damage = 125f;
+                        lifetime = 90f;
+                        width = height = 16f;
+                        backColor = Color.valueOf("ddba5fff");
+                        frontColor = Color.white;
+                        shrinkX = shrinkY = 0f;
+                        trailColor = Color.valueOf("ddba5fff");
+                        trailLength = 12;
+                        trailWidth = 2.2f;
+                        despawnEffect = new ExplosionEffect() {{
+                            waveColor = Color.valueOf("ddba5fff");
+                            smokeColor = Pal.lightOrange;
+                            waveStroke = 3f;
+                            waveRad = 60f;
+                        }};
+                        despawnSound = hitSound = Sounds.explosion;
+
+                        shootSound = Sounds.shootBig;
+                    }},//TODO finish it later */
                     StuasutItems.barium, new BasicBulletType() {{
                         damage = 0f;
                         lifetime = 0f;
@@ -568,37 +659,37 @@ public class StuasutBlocks {
             rotateSpeed = 2f;
             size = 3;
             ammo(
-                    StuasutItems.barium, new BasicBulletType(){{
+                    StuasutItems.barium, new BasicBulletType() {{
                         damage = 0f;
                         lifetime = 0f;
                         speed = 1000f;
-                        spawnUnit = new MissileUnitType("basic-sentinel"){{
+                        spawnUnit = new MissileUnitType("basic-sentinel") {{
 
-                                speed = 1.4f;
-                                rotateSpeed = 4f;
-                                maxRange = 40f;
-                                lifetime = 60f * 3.2f;
-                                health = 200;
-                                loopSoundVolume = 0.1f;
-                                constructor = TimedKillUnit::create;
-                                collidesTeam = true;
+                            speed = 1.4f;
+                            rotateSpeed = 4f;
+                            maxRange = 40f;
+                            lifetime = 60f * 3.2f;
+                            health = 200;
+                            loopSoundVolume = 0.1f;
+                            constructor = TimedKillUnit::create;
+                            collidesTeam = true;
 
-                                weapons.add(new Weapon("stus-basic-sentinel-weapon") {{
-                                    x = 0f;
-                                    rotate = true;
-                                    rotateSpeed = 8f;
-                                    mirror = false;
-                                    reload = 30f;
-                                    bullet = new BasicBulletType() {{
-                                        damage = 8f;
-                                        speed = 4f;
-                                        lifetime = 10f;
-                                        width = 5f;
-                                        height = 7f;
-                                    }};
-                                }});
-                            }};
-                        }});
+                            weapons.add(new Weapon("stus-basic-sentinel-weapon") {{
+                                x = 0f;
+                                rotate = true;
+                                rotateSpeed = 8f;
+                                mirror = false;
+                                reload = 30f;
+                                bullet = new BasicBulletType() {{
+                                    damage = 8f;
+                                    speed = 4f;
+                                    lifetime = 10f;
+                                    width = 5f;
+                                    height = 7f;
+                                }};
+                            }});
+                        }};
+                    }});
             drawer = new DrawTurret("rapu-");
             researchCost = with(StuasutItems.zinc, 800, StuasutItems.barium, 600, StuasutItems.bariumraw, 450);
         }};
@@ -611,11 +702,11 @@ public class StuasutBlocks {
             rotateSpeed = 2f;
             size = 3;
             ammo(
-                    StuasutItems.cadmium, new BasicBulletType(){{
+                    StuasutItems.cadmium, new BasicBulletType() {{
                         damage = 0f;
                         lifetime = 0f;
                         speed = 1000f;
-                        spawnUnit = new MissileUnitType("laser-sentinel"){{
+                        spawnUnit = new MissileUnitType("laser-sentinel") {{
 
                             speed = 1.55f;
                             rotateSpeed = 4f;
@@ -657,11 +748,11 @@ public class StuasutBlocks {
             rotateSpeed = 2f;
             size = 3;
             ammo(
-                    StuasutItems.rheniumraw, new BasicBulletType(){{
+                    StuasutItems.rheniumraw, new BasicBulletType() {{
                         damage = 0f;
                         lifetime = 0f;
                         speed = 1000f;
-                        spawnUnit = new MissileUnitType("minigun-sentinel"){{
+                        spawnUnit = new MissileUnitType("minigun-sentinel") {{
                             speed = 1.15f;
                             rotateSpeed = 4f;
                             maxRange = 50f;

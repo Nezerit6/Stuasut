@@ -57,6 +57,20 @@ public class StuasutTechTree {
                 node(StuasutBlocks.zincBridge, () -> {
                 });
             });
+            node(StuasutBlocks.zincPump, () -> {
+                node(StuasutBlocks.anodizedConduit, () -> {
+                   node(StuasutBlocks.anodizedRouter, () -> {
+                       node(StuasutBlocks.zincLiquidContainer, () -> {
+                       });
+                       node(StuasutBlocks.zincLiquidTank, () -> {
+                       });
+                   });
+                   node(StuasutBlocks.anodizedJunction, () -> {
+                   });
+                   node(StuasutBlocks.anodizedBridge, () -> {
+                   });
+                });
+            });
             node(StuasutBlocks.airFactory, () -> {
                 node(StuasutUnits.navicula, () -> {
 

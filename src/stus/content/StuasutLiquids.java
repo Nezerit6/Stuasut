@@ -8,9 +8,9 @@ public class StuasutLiquids {
 
     public static void load() {
         diethylEther = new Liquid("diethyl-ether", Color.valueOf("E9B27FFF")) {{
-            temperature = 2.15f;
+            temperature = 0.57f;
             viscosity = 0.35f;
-            flammability = 5f;
+            flammability = 2f;
             heatCapacity = -0.5f;
             boilPoint = 0.25f;
         }};
