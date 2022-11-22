@@ -35,6 +35,16 @@ dependencies{
     annotationProcessor "com.github.Anuken:jabel:$jabelVersion"
 }
 
+//force arc version
+configurations.all{
+    resolutionStrategy.eachDependency { details ->
+        if(details.requested.group == 'com.github.Anuken.Arc'){
+            details.useVersion "$mindustryVersion"
+        }
+    }
+}
+
+
 task jarAndroid{
     dependsOn "jar"
 
@@ -50,7 +60,7 @@ task jarAndroid{
 
         //dex and desugar files - this requires d8 in your PATH
         "d8 $dependencies --min-api 14 --output ${project.archivesBaseName}Android.jar ${project.archivesBaseName}Desktop.jar"
-            .execute(null, new File("$buildDir/libs")).waitForProcessOutput(System.out, System.err)
+                .execute(null, new File("$buildDir/libs")).waitForProcessOutput(System.out, System.err)
     }
 }
 

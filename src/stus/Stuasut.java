@@ -6,6 +6,7 @@ import arc.util.*;
 import mindustry.*;
 import mindustry.content.*;
 import mindustry.game.EventType.*;
+import mindustry.game.Team;
 import mindustry.gen.*;
 import mindustry.mod.*;
 import mindustry.type.Item;
@@ -48,6 +49,7 @@ public class Stuasut extends Mod{
          */
         Log.info("Loading some stus content.");
 
+        Team.green.name = "rising-empire";
         StuasutStatus.load();
         StuasutItems.load();
         StuasutLiquids.load();

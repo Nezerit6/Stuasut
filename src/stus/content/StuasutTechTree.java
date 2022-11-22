@@ -88,8 +88,6 @@ public class StuasutTechTree {
                             node(StuasutBlocks.rheniumWallLarge, () -> {
                             });
                         });
-                        node(StuasutBlocks.cadmiumWallLarge, () -> {
-                        });
                     });
                 });
             });

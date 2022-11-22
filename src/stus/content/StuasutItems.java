@@ -25,35 +25,28 @@ public class StuasutItems {
         }};
 
         cadmiumraw = new Item("cadmium-raw", Color.valueOf("246807ff")) {{
-            alwaysUnlocked = true;
             hardness = 2;
             cost = 0.7f;
         }};
         cadmium = new Item("cadmium", Color.valueOf("4d8f30ff")) {{
-            alwaysUnlocked = true;
             cost = 0.7f;
         }};
 
         rheniumraw = new Item("rhenium-raw", Color.valueOf("c99292ff")) {{
-            alwaysUnlocked = true;
             hardness = 3;
             cost = 0.7f;
         }};
         rhenium = new Item("rhenium", Color.valueOf("c8425fff")) {{
-            alwaysUnlocked = true;
             cost = 0.7f;
         }};
         antimonyraw = new Item("antimony-raw", Color.valueOf("4579a7ff")) {{
-            alwaysUnlocked = true;
             hardness = 4;
             cost = 0.7f;
         }};
         antimony = new Item("antimony", Color.valueOf("7bb1e1ff")) {{
-            alwaysUnlocked = true;
             cost = 0.7f;
         }};
         dencealloy = new Item("dencealloy", Color.valueOf("7bb1e1ff")) {{
-            alwaysUnlocked = true;
             cost = 0.7f;
         }};
         rapuItems.addAll(
