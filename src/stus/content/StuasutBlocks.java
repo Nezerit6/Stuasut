@@ -8,10 +8,7 @@ import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
-import mindustry.entities.pattern.ShootSpread;
-import mindustry.gen.Sounds;
-import mindustry.gen.TimedKillUnit;
-import mindustry.gen.UnitEntity;
+import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.type.unit.MissileUnitType;
@@ -273,18 +270,6 @@ public class StuasutBlocks {
             size = 3;
             craftEffect = new MultiEffect(Fx.pointShockwave, Fx.pointShockwave);
             resolvedRecipes = Seq.with(
-                    /** new Recipe(
-                     new IOEntry(
-                     Seq.with(ItemStack.with(
-                     StuasutItems.bariumraw, 3
-                     )),
-                     Seq.with(),
-                     1.5f),
-                     new IOEntry(
-                     Seq.with(ItemStack.with(
-                     StuasutItems.barium, 1
-                     )),
-                     );*/
                     new Recipe(
                             new IOEntry(
                                     Seq.with(ItemStack.with(
@@ -328,7 +313,7 @@ public class StuasutBlocks {
             shake = 5f;
             itemCapacity = 150;
 
-            consumePower(90f / 60f);
+            consumePower(270f / 60f);
             consumeLiquid(Liquids.gallium, 6f / 60f);
 
             drillEffect = new MultiEffect(Fx.mineImpact, Fx.drillSteam, Fx.mineImpactWave.wrap(Pal.redLight, 40f));
