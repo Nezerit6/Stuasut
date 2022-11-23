@@ -76,7 +76,7 @@ public class StuasutTechTree {
 
                 });
             });
-            node(StuasutBlocks.bariumForge, () -> {
+            node(StuasutBlocks.forgeT1, () -> {
                 //TODO more factories
             });
             node(StuasutBlocks.bariumWall, () -> {

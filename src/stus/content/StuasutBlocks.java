@@ -52,7 +52,7 @@ public class StuasutBlocks {
     bariumWall, bariumWallLarge, cadmiumWall, cadmiumWallLarge, rheniumWall, rheniumWallLarge,
 
     //crafting
-    bariumForge,
+    forgeT1, forgeT2,
 
     //furnace
 
@@ -186,9 +186,9 @@ public class StuasutBlocks {
             solid = false;
             underBullets = true;
 
-            ((Conduit)StuasutBlocks.anodizedConduit).junctionReplacement = this;
+            ((Conduit) StuasutBlocks.anodizedConduit).junctionReplacement = this;
         }};
-        anodizedBridge = new DirectionLiquidBridge("anodized-bridge-conduit"){{
+        anodizedBridge = new DirectionLiquidBridge("anodized-bridge-conduit") {{
             requirements(Category.liquid, with(StuasutItems.zinc, 20, StuasutItems.barium, 10));
             range = 6;
             health = 95;
@@ -198,17 +198,17 @@ public class StuasutBlocks {
             solid = false;
             underBullets = true;
 
-            ((Conduit)StuasutBlocks.anodizedConduit).rotBridgeReplacement = this;
+            ((Conduit) StuasutBlocks.anodizedConduit).rotBridgeReplacement = this;
         }};
-        zincLiquidContainer = new LiquidRouter("zinc-liquid-containter"){{
-           requirements(Category.liquid, with(StuasutItems.zinc, 25, StuasutItems.bariumraw, 15, StuasutItems.barium, 12));
-           liquidCapacity = 1250f;
-           size = 2;
-           liquidPadding = 6f/4f;
-           researchCostMultiplier = 4;
-           solid = true;
+        zincLiquidContainer = new LiquidRouter("zinc-liquid-containter") {{
+            requirements(Category.liquid, with(StuasutItems.zinc, 25, StuasutItems.bariumraw, 15, StuasutItems.barium, 12));
+            liquidCapacity = 1250f;
+            size = 2;
+            liquidPadding = 6f / 4f;
+            researchCostMultiplier = 4;
+            solid = true;
         }};
-        zincLiquidTank = new LiquidRouter("zinc-liquid-tank"){{
+        zincLiquidTank = new LiquidRouter("zinc-liquid-tank") {{
             requirements(Category.liquid, with(StuasutItems.zinc, 50, StuasutItems.bariumraw, 30, StuasutItems.barium, 24));
             liquidCapacity = 3000f;
             size = 3;
@@ -259,28 +259,79 @@ public class StuasutBlocks {
         }};
 
         //crafting
-        bariumForge = new MultiCrafter("barium-forge") {{
+        forgeT1 = new MultiCrafter("forge-t1") {{
             requirements(Category.crafting, with(StuasutItems.zinc, 70, StuasutItems.bariumraw, 30));
             health = 80;
-            size = 3;
-            craftEffect = new MultiEffect(Fx.pointShockwave, Fx.pointShockwave);
+            size = 2;
+            craftEffect = new MultiEffect(Fx.pointShockwave, Fx.ventSteam); //new MultiEffect(Fx.pointShockwave, Fx.pointShockwave, Fx.drillSteam);
+            //can't make StuasutItems.antimony, balance
             resolvedRecipes = Seq.with(
+                    //barium recipe
                     new Recipe(
+                            //consumes
                             new IOEntry(
+                                    //items
                                     Seq.with(ItemStack.with(
-                                            StuasutItems.bariumraw, 3
+                                            StuasutItems.bariumraw, 4
                                     )),
+                                    //liquids
                                     Seq.with(),
-                                    1.5f),
-
+                                    90f / 60f),
+                            //outputs
                             new IOEntry(
+                                    //items
                                     Seq.with(ItemStack.with(
-                                            StuasutItems.barium, 1
+                                            StuasutItems.barium, 2
                                     )),
+                                    //liquids
                                     Seq.with()),
-                            120f
+                            //craftTime
+                            3f * 60f
+                    ),
+                    //cadmium recipe
+                    new Recipe(
+                            //consumes
+                            new IOEntry(
+                                    //items
+                                    Seq.with(ItemStack.with(
+                                            StuasutItems.cadmiumraw, 4
+                                    )),
+                                    //liquids
+                                    Seq.with(),
+                                    180f / 60f),
+                            //outputs
+                            new IOEntry(
+                                    //items
+                                    Seq.with(ItemStack.with(
+                                            StuasutItems.cadmium, 1
+                                    )),
+                                    //liquids
+                                    Seq.with()),
+                            //craftTime
+                            3.5f * 60f
+                    ),
+                    //rhenium recipe
+                    new Recipe(
+                            //consumes
+                            new IOEntry(
+                                    //items
+                                    Seq.with(ItemStack.with(
+                                            StuasutItems.rheniumraw, 4
+                                    )),
+                                    //liquids
+                                    Seq.with(),
+                                    360f / 60f),
+                            //outputs
+                            new IOEntry(
+                                    //items
+                                    Seq.with(ItemStack.with(
+                                            StuasutItems.rhenium, 1
+                                    )),
+                                    //liquids
+                                    Seq.with()),
+                            //craftTime
+                            3.75f * 60f
                     ));
-
             itemCapacity = 10;
             drawer = new DrawMulti(new DrawDefault(), new DrawFlame());
         }};
