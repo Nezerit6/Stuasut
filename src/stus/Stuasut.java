@@ -57,6 +57,7 @@ public class Stuasut extends Mod{
         StuasutBlocks.load();
         StuasutSchematics.load();
         StuasutPlanets.load();
+        StuasutSectors.load();
         StuasutTechTree.load();
     }
 
