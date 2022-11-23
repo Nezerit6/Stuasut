@@ -41,7 +41,7 @@ import static mindustry.type.ItemStack.*;
 public class StuasutBlocks {
     public static Block
             //environment
-            gertwall, limestonewall, gert, limestone, mercurymud, slateWall, slate,
+            gertwall, limestonewall, gert, limestone, mercurymud, slateWall, slate, bariumFloor, bariumMetal,
 
     //boulders
     gertBoulder, limestoneBoulder,
@@ -83,7 +83,6 @@ public class StuasutBlocks {
     public static void load() {
         //environment
         gert = new Floor("gert") {{
-            playerUnmineable = true;
             variants = 3;
         }};
         gertwall = new StaticWall("gert-wall") {{
@@ -103,6 +102,12 @@ public class StuasutBlocks {
         }};
         slate = new Floor("slate") {{
             variants = 3;
+        }};
+        bariumFloor = new Floor("barium-floor") {{
+            variants = 0;
+        }};
+        bariumMetal = new StaticWall("barium-metal") {{
+            variants = 0;
         }};
         //boulders
         gertBoulder = new Prop("gert-boulder") {{

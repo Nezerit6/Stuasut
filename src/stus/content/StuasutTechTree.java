@@ -103,6 +103,9 @@ public class StuasutTechTree {
                     });
                 });
             });
+            node(StuasutSectors.oldConstruction, () -> {
+
+            });
         });
     }
 }
