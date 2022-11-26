@@ -49,7 +49,6 @@ public class Stuasut extends Mod{
          */
         Log.info("Loading some stus content.");
 
-        Team.green.name = "rising-empire";
         StuasutStatus.load();
         StuasutItems.load();
         StuasutLiquids.load();
