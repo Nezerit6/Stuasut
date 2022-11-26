@@ -20,8 +20,6 @@ import static mindustry.Vars.*;
 
 public class RapuPlanetGenerator extends PlanetGenerator {
 
-    String launchSchem = "bXNjaAF4nGNgYWBhZmDJS8xNZeDNyU9MyS8tCU7OSAVyuVNSi5OLMgtKMvPzGBgY2HISk1JzihmYomMZGfiKS0qLdZPzi1J1UxLLQdKMIMTIwAwAfS0Ufg==";
-
     RapuBase basegen = new RapuBase();
     public static final int seed = 29;
     public static int widthSeed = 1, heightSeed = 2, roomSeed = 3, strokeSeed = 4;
@@ -40,8 +38,7 @@ public class RapuPlanetGenerator extends PlanetGenerator {
 		defaultLoadout = StuasutSchematics.basicDawn;
 	}
 	ObjectMap<Block, Block> dec = ObjectMap.of(
-			StuasutBlocks.gert, StuasutBlocks.gertBoulder,
-			StuasutBlocks.limestone, StuasutBlocks.limestoneBoulder
+			StuasutBlocks.gert, StuasutBlocks.limestone, Blocks.stone
 	);
 
     float rawHeight(Vec3 pos) {
@@ -158,9 +155,17 @@ public class RapuPlanetGenerator extends PlanetGenerator {
                 block = floor.asFloor().wall;
             }
 
-            //decoration
-            if (rand.chance(0.01) && block == Blocks.air) {
-                block = dec.get(floor, floor.asFloor().decoration);
+            dec: {
+                for(int i = 0; i < 4; i++){
+                    Tile near = world.tile(x + Geometry.d4[i].x, y + Geometry.d4[i].y);
+                    if(near != null && near.block() != Blocks.air){
+                        break dec;
+                    }
+                }
+
+                if(rand.chance(0.03) && floor.asFloor().hasSurface() && block == Blocks.air){
+                    block = dec.get(floor, floor.asFloor().decoration);
+                }
             }
 
             //gallium
@@ -312,7 +317,7 @@ public class RapuPlanetGenerator extends PlanetGenerator {
                 break;
             }
         }
-        Schematics.placeLoadout(Schematics.readBase64(launchSchem), spawnX, spawnY, Team.sharded);
+        Schematics.placeLoadout(StuasutSchematics.basicDawn, spawnX, spawnY, Team.sharded);
 
         tiles.getn(r.get(1).x, r.get(1).y).setOverlay(Blocks.spawn);
 

@@ -109,9 +109,11 @@ public class StuasutBlocks {
         //boulders
         gertBoulder = new Prop("gert-boulder") {{
             variants = 2;
+            gert.asFloor().decoration = this;
         }};
         limestoneBoulder = new Prop("limestone-boulder") {{
             variants = 2;
+            limestone.asFloor().decoration = this;
         }};
         //ores
         oreZinc = new OreBlock(StuasutItems.zinc) {{
