@@ -26,7 +26,6 @@ public class StuasutTechTree {
                         nodeProduce(StuasutItems.rheniumraw, () -> {
                             nodeProduce(StuasutItems.antimonyraw, () -> {
                                 nodeProduce(StuasutItems.antimony, () -> {
-
                                 });
                             });
                             nodeProduce(StuasutItems.rhenium, () -> {
@@ -39,11 +38,15 @@ public class StuasutTechTree {
                     });
                 });
             });
+            node(StuasutBlocks.coreNoon, () -> {
+            });
             node(StuasutBlocks.zinccrusher, () -> {
                 node(StuasutBlocks.impulseCrusher, () -> {
                 });
             });
             node(StuasutBlocks.windgenerator, () -> {
+                node(StuasutBlocks.convector, () -> {
+                });
                 node(StuasutBlocks.zincnode, () -> {
                     node(StuasutBlocks.zincnodelarge, () -> {
                     });

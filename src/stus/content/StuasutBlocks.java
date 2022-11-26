@@ -66,7 +66,7 @@ public class StuasutBlocks {
     windgenerator, convector, zincbattery, zincbatterylarge, zincnode, zincnodelarge,
 
     //storage
-    coreDawn,
+    coreDawn, coreNoon,
 
     //distribution
     zincBridge, zincDuct, bariumDuct, itemRouter,
@@ -420,7 +420,13 @@ public class StuasutBlocks {
             size = 3;
             ambientSound = Sounds.smelter;
             ambientSoundVolume = 0.06f;
-            warmupSpeed = 0.15f;
+            warmupSpeed = 0.06f;
+
+            explosionShake = 6f;
+            explosionShakeDuration = 16f;
+            explosionDamage = 855 * 4;
+            explodeEffect = Fx.impactReactorExplosion;
+            explodeSound = Sounds.explosionbig;
 
             consumePower(90f / 60f);
             consumeLiquid(StuasutLiquids.diethylEther, 12f / 60f);
@@ -434,11 +440,12 @@ public class StuasutBlocks {
             researchCost = with(StuasutItems.zinc, 40, StuasutItems.bariumraw, 16);
         }};
         zincnodelarge = new BeamNode("large-zinc-power-node") {{
-            requirements(Category.power, with(StuasutItems.zinc, 10, StuasutItems.bariumraw, 5, StuasutItems.barium, 2));
+            requirements(Category.power, with(StuasutItems.zinc, 25, StuasutItems.bariumraw, 15, StuasutItems.barium, 8));
             consumesPower = outputsPower = true;
             consumePowerBuffered(1500f);
-            range = 20;
-            health = 185;
+            size = 3;
+            range = 26;
+            health = 255;
         }};
         //storage
 
@@ -453,6 +460,17 @@ public class StuasutBlocks {
             itemCapacity = 4000;
             size = 4;
             unitCapModifier = 6;
+        }};
+
+        coreNoon = new RegenCore("core-noon") {{
+            requirements(Category.effect, with(StuasutItems.zinc, 3000, StuasutItems.bariumraw, 2500, StuasutItems.barium, 850, StuasutItems.cadmium, 525));
+
+            drawArrow = false;
+            unitType = UnitTypes.gamma;
+            health = 4550;
+            itemCapacity = 6000;
+            size = 5;
+            unitCapModifier = 10;
         }};
         //distribution
         zincDuct = new Duct("zinc-duct") {{

@@ -6,25 +6,29 @@ import mindustry.content.*;
 import mindustry.game.*;
 import mindustry.graphics.g3d.*;
 import mindustry.type.*;
+import mindustry.world.meta.*;
 import stus.planets.*;
+import stus.world.meta.*;
 
 public class StuasutPlanets {
     public static Planet
     rapu;
-    public static void load(){
-        Planets.serpulo.hiddenItems.addAll(Vars.content.items()).removeAll(Items.serpuloItems);
-        Planets.erekir.hiddenItems.addAll(Vars.content.items()).removeAll(Items.erekirItems);
-         rapu = new Planet("rapu", Planets.sun, 1f, 3){{
+
+    public static void load() {
+        Planets.serpulo.hiddenItems.addAll(StuasutItems.rapuItems).removeAll(Items.serpuloItems);
+        Planets.erekir.hiddenItems.addAll(StuasutItems.rapuItems).removeAll(Items.erekirItems);
+        rapu = new Planet("rapu", Planets.sun, 1f, 3) {{
             defaultCore = StuasutBlocks.coreDawn;
             sectorSeed = 3;
             generator = new RapuPlanetGenerator();
             meshLoader = () -> new HexMesh(this, 5);
             cloudMeshLoader = () -> new MultiMesh(
-                         new HexSkyMesh(this, 6, 0.1f, 0.23f, 5, Color.valueOf("393939").a(0.75f), 2, 0.45f, 1.13f, 0.45f),
-                         new HexSkyMesh(this, 3, 0.2f, 0.19f, 5, Color.valueOf("555555").a(0.65f), 3, 0.25f, 1.22f, 0.45f));
+                    new HexSkyMesh(this, 6, 0.1f, 0.23f, 5, Color.valueOf("393939").a(0.75f), 2, 0.45f, 1.13f, 0.45f),
+                    new HexSkyMesh(this, 3, 0.2f, 0.19f, 5, Color.valueOf("555555").a(0.65f), 3, 0.25f, 1.22f, 0.45f));
             iconColor = StuasutBlocks.gert.mapColor;
             accessible = true;
             alwaysUnlocked = true;
+            landCloudColor = Color.valueOf("555555");
             atmosphereColor = Color.valueOf("B79E54");
             startSector = 135;
             atmosphereRadIn = 0.01f;
@@ -39,6 +43,7 @@ public class StuasutPlanets {
                 r.onlyDepositCore = false;
             };
             unlockedOnLand.add(StuasutBlocks.coreDawn);
+
             hiddenItems.addAll(Vars.content.items()).removeAll(StuasutItems.rapuItems);
         }};
     }
