@@ -20,7 +20,7 @@ public class StuasutPlanets {
         rapu = new Planet("rapu", Planets.sun, 1f, 3) {{
             defaultCore = StuasutBlocks.coreDawn;
             sectorSeed = 3;
-            generator = new RapuPlanetGenerator();
+            generator = new RapuPlanetGeneratorV2();
             meshLoader = () -> new HexMesh(this, 5);
             cloudMeshLoader = () -> new MultiMesh(
                     new HexSkyMesh(this, 6, 0.1f, 0.23f, 5, Color.valueOf("393939").a(0.75f), 2, 0.45f, 1.13f, 0.45f),
@@ -43,8 +43,7 @@ public class StuasutPlanets {
                 r.onlyDepositCore = false;
             };
             unlockedOnLand.add(StuasutBlocks.coreDawn);
-
-            hiddenItems.addAll(Vars.content.items()).removeAll(StuasutItems.rapuItems);
         }};
+        rapu.hiddenItems.addAll(Vars.content.items()).removeAll(StuasutItems.rapuItems);
     }
 }

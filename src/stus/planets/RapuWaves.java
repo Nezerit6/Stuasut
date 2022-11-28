@@ -12,11 +12,22 @@ import static mindustry.content.UnitTypes.*;
 import static stus.content.StuasutUnits.*;
 
 public class RapuWaves {
-    public static Seq<SpawnGroup> generate(float difficulty, Rand rand, boolean attack) {
+    public static Seq<SpawnGroup> generate(float difficulty, Rand rand, boolean attack, boolean air, boolean naval) {
         UnitType[][] species = {
                 {dagger, mace, fortress, scepter, reign},
                 {navicula,navicula,navicula,navicula,navicula}
         };
+
+        if(air){
+            species = Structs.filter(UnitType[].class, species, v -> v[0].flying);
+        }
+
+        if(naval){
+            species = Structs.filter(UnitType[].class, species, v -> v[0].flying || v[0].naval);
+        }else{
+            species = Structs.filter(UnitType[].class, species, v -> !v[0].naval);
+        }
+
 
         //required progression:
         //- extra periodic patterns
@@ -29,9 +40,10 @@ public class RapuWaves {
         float shieldStart = 30, shieldsPerWave = 20 + difficulty*30f;
         float[] scaling = {1, 2f, 3f, 4f, 5f};
 
+        UnitType[][] finalSpecies = species;
         Intc createProgression = start -> {
             //main sequence
-            UnitType[] curSpecies = Structs.random(species);
+            UnitType[] curSpecies = Structs.random(finalSpecies);
             int curTier = 0;
 
             for(int i = start; i < cap;){
@@ -76,7 +88,7 @@ public class RapuWaves {
 
                 //small chance to switch species
                 if(rand.chance(0.3)){
-                    curSpecies = Structs.random(species);
+                    curSpecies = Structs.random(finalSpecies);
                 }
             }
         };
