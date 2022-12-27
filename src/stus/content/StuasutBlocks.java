@@ -11,7 +11,7 @@ import mindustry.entities.effect.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
-import mindustry.type.unit.MissileUnitType;
+import mindustry.type.unit.*;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.defense.turrets.*;
@@ -109,7 +109,7 @@ public class StuasutBlocks {
         //boulders
         gertBoulder = new Prop("gert-boulder") {{
             variants = 2;
-            gert.asFloor().decoration = this;
+            gert.asFloor().decoration = gertBoulder;
         }};
         limestoneBoulder = new Prop("limestone-boulder") {{
             variants = 2;

@@ -329,7 +329,7 @@ public class RapuPlanetGenerator extends PlanetGenerator {
         }
 
         state.rules.waveSpacing = Mathf.lerp(60 * 65 * 2, 60f * 60f * 1f, Math.max(sector.threat - 0.4f, 0f));
-        state.rules.spawns = RapuWaves.generate(sector.threat, new Rand(), state.rules.attackMode);
+        //state.rules.spawns = RapuWaves.generate(sector.threat, new Rand(), state.rules.attackMode,state.rules.attackMode && spawner.countGroundSpawns() == 0, naval);
         state.rules.winWave = sector.info.winWave = 10 + 5 * (int) Math.max(sector.threat * 12, 1);
         state.rules.waves = sector.info.waves = true;
         state.rules.env = sector.planet.defaultEnv;

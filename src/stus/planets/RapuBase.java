@@ -1,14 +1,9 @@
 package stus.planets;
 
-import arc.func.Cons;
-import arc.func.Intc2;
-import arc.math.Angles;
-import arc.math.Mathf;
-import arc.math.geom.Geometry;
-import arc.math.geom.Point2;
-import arc.math.geom.Vec2;
-import arc.struct.ObjectMap;
-import arc.struct.Seq;
+import arc.func.*;
+import arc.math.*;
+import arc.math.geom.*;
+import arc.struct.*;
 import arc.util.*;
 import mindustry.ai.*;
 import mindustry.content.*;
@@ -26,11 +21,12 @@ import mindustry.world.blocks.storage.*;
 import mindustry.world.meta.*;
 
 import static mindustry.Vars.*;
-import static mindustry.ai.BaseRegistry.BasePart;
+import static mindustry.ai.BaseRegistry.*;
 
 public class RapuBase {
     public String[] schematics;
-    public Seq<BasePart> coreParts = new Seq<>(), parts = new Seq<>();
+    public Seq<BasePart> coreParts = new Seq<>();
+    public Seq<BasePart> parts = new Seq<>();
     public ObjectMap<Content, Seq<BasePart>> reqParts = new ObjectMap<>();
     public static ObjectMap<Item, Block> uores = new ObjectMap<>();
 
@@ -45,8 +41,8 @@ public class RapuBase {
                 "bXNjaAF4nGNgYWBhZmDJS8xNZeDNyU9MyS8tCU7OSAVyuVNSi5OLMgtKMvPzGBgY2HISk1JzihmYomMZGfiKS0qLdZPzi1J1UxLLQdKMIMTIwAwAfS0Ufg==",
 
                 //defenses
-                /*"bXNjaAF4nF2PwW6EMAxEBxIiw6bbU+/9Af6if1HtIQtphZTSCraq+vf1xOylgvDw2OMBnHF28Gv6yHh4yVP6fZ7zW16njNOc92lbvm7L5woglHTNZUf7evF4nHW0jPX5k0rB0z9hLGl715WHvC2l5O1eTuV7v2kJjEADr0fvDk3DHD1aiYk9xVavCm8IBjEMNHBHy1U6yzkPp7/FZawEjr1jMhIdDURkzBEaaHcKjxoTuCWovfYGQ7WL5YnlieWJ5YnlieWJGXrL6y1v0HdHeEMwiKH6IntERzHaJ0aOED3cH6eIKZg=",
-                "bXNjaAF4nFWPQW7DIBBFP8YGh7SNKvUAWXbjTc6QW1RdUDOJLBG7wlar3D4zzKKqEHqa+Y8B8Iwni3aON8LhTGO8HxNdaB7peMI+0TqW6XublhmAy/GL8orm47PFW2I5D9t0o9+Y85BjuRJe/7pDKtMPFbz8F3HQet1iueRlSTz4nTcaGEGrcIpeYGrKCGgMLC8uG3QwAjal2YtuxRSh04oPVE9RZzi+ocKjztgpqunUdGIKdoqaec28Zl4zLxn0bsMti/qSTqtefxAEQb8YOLMCJ27Q9p4DK2gVTtHDPgACKCsZ",
+                "bXNjaAF4nEWO3QrCMAxGv67dj9sYiOBb7MJ38C3Ei9lFLcxO2g7Bp7dpL2woJycJIRjQSCg7vQjNme5kNZ3QzeS1M+9gVgugWqYbLR7F5arQ+rD5MawP4zGk/GusHudNB+z/rt3mn+RwSKWPsfP4IEtuCquLK4/xQ8SIr4QQKDgYJUNmk9lUNsWWBpDmYlmi4j2MCqJAnXs19wR2bIyS0WZrs3XZOjagz7f0fMsPuEMmBg==",
+                /*"bXNjaAF4nFWPQW7DIBBFP8YGh7SNKvUAWXbjTc6QW1RdUDOJLBG7wlar3D4zzKKqEHqa+Y8B8Iwni3aON8LhTGO8HxNdaB7peMI+0TqW6XublhmAy/GL8orm47PFW2I5D9t0o9+Y85BjuRJe/7pDKtMPFbz8F3HQet1iueRlSTz4nTcaGEGrcIpeYGrKCGgMLC8uG3QwAjal2YtuxRSh04oPVE9RZzi+ocKjztgpqunUdGIKdoqaec28Zl4zLxn0bsMti/qSTqtefxAEQb8YOLMCJ27Q9p4DK2gVTtHDPgACKCsZ",
                 "bXNjaAF4nFVQ0WqEQAyc3fV07zy1hX7A/cA99QsK/YvSB6vrIexpUWnp3zezEUoVMmQy2WSCBo1DNrX3gOY1dO3PpQ9DmLpweUbZh7Vbxs9tnCcAeWw/Qlxh395zNL2I4zXF7zZG1Eps4z2k/Ol/fo3tcgt4/GOv/TJ+hQUPSnXzNCzztAmzv71u7TLEee5l9gu4AGAECqTPwxrJDySN1gxrBA9HOMJZ8E8hY4NVpVWlpZK1XVnCyTVYS3JI4G8OEo5KljAcapBmV3BpL87LlczZ5+QN6SMUfLPASSVnhb2vZkY/hmAUrMJZa5VCzQavSq9Kr0ovSkuoONiL0tC5SGjLwh0EMq504i40ktwexYqlUvro3LKh5NaE5LZUyZnWCIVm6fIVj0DIFQol9xoHyybp1nXyJCC1XwbxObk="*/
 
                 //factory
@@ -247,14 +243,14 @@ public class RapuBase {
         core.circle(160, (x, y) -> cons.get(tiles.getn(x, y)));
     }
 
-    public static void tryPlace(BasePart part, int x, int y, Team team){
-        tryPlace(part, x, y, team, null);
+    public static boolean tryPlace(BasePart part, int x, int y, Team team){
+        return tryPlace(part, x, y, team, null);
     }
 
-    public static void tryPlace(BasePart part, int x, int y, Team team, @Nullable Intc2 posc){
-        if (part == null) return;
+    public static boolean tryPlace(BasePart part, int x, int y, Team team, @Nullable Intc2 posc){
 
         int rotation = Mathf.range(2);
+        assert part != null;
         axis.set((int)(part.schematic.width / 2f), (int)(part.schematic.height / 2f));
         Schematic result = Schematics.rotate(part.schematic, rotation);
         int rotdeg = rotation*90;
@@ -267,7 +263,7 @@ public class RapuBase {
         for(Schematic.Stile tile : result.tiles){
             int realX = tile.x + cx, realY = tile.y + cy;
             if(isTaken(tile.block, realX, realY)){
-                return;
+                return false;
             }
 
             if(posc != null){
@@ -311,14 +307,13 @@ public class RapuBase {
             }
         }
 
+        return true;
     }
 
     static void set(Tile tile, Item item){
-        if (uores.containsKey(item)) {
-            tile.setOverlay(uores.get(item));
-        } else if (bases.ores.containsKey(item)){
+        if(bases.ores.containsKey(item)){
             tile.setOverlay(bases.ores.get(item));
-        } else if (bases.oreFloors.containsKey(item)) {
+        }else if(bases.oreFloors.containsKey(item)){
             tile.setFloor(bases.oreFloors.get(item));
         }
     }
