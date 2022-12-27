@@ -39,7 +39,9 @@ public class RapuPlanetGeneratorV2 extends PlanetGenerator{
     }
 
     ObjectMap<Block, Block> dec = ObjectMap.of(
-            StuasutBlocks.gert, StuasutBlocks.limestone, Blocks.stone
+            StuasutBlocks.gert, StuasutBlocks.gertBoulder,
+            StuasutBlocks.limestone, StuasutBlocks.limestoneBoulder,
+            Blocks.stone, Blocks.boulder
     );
 
     ObjectMap<Block, Block> diethyl = ObjectMap.of(
