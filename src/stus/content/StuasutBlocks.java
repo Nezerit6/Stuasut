@@ -403,7 +403,7 @@ public class StuasutBlocks {
                     -40f, -40f,
                     -24f, -56f,
                     0f, -64f
-            };
+            };//TODO remade
         }};
 
         //power
@@ -411,7 +411,7 @@ public class StuasutBlocks {
         windgenerator = new ConsumeGenerator("wind-generator") {{
             size = 2;
             requirements(Category.power, with(StuasutItems.zinc, 20, StuasutItems.bariumraw, 8));
-            powerProduction = 1f;
+            powerProduction = 48f/60f;
             drawer = new DrawMulti(new DrawDefault(),
                     new DrawRegion("-rotator", 0.4f * 9f));
         }};

@@ -8,7 +8,6 @@ import mindustry.graphics.g3d.*;
 import mindustry.type.*;
 import mindustry.world.meta.*;
 import stus.planets.*;
-import stus.world.meta.*;
 
 public class StuasutPlanets {
     public static Planet

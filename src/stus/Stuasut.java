@@ -34,7 +34,7 @@ public class Stuasut extends Mod{
 
     @Override
     public void loadContent(){
-        /**
+        /*
          * Initialization
          * - Teams
          * - Status effects
