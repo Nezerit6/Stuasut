@@ -351,7 +351,7 @@ public class StuasutBlocks {
             size = 2;
             hasPower = true;
             tier = 2;
-            drillEffect = new MultiEffect(Fx.mineImpact, Fx.drillSteam, Fx.mineImpactWave.wrap(Pal.redLight, 40f));
+            drillEffect = new MultiEffect(Fx.mineImpact, Fx.drillSteam);
             shake = 3;
             itemCapacity = 25;
             alwaysUnlocked = true;

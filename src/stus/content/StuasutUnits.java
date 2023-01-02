@@ -116,7 +116,7 @@ public class StuasutUnits {
 
             targetAir = true;
             targetGround = false;
-            targetFlags = new BlockFlag[]{BlockFlag.generator, BlockFlag.reactor, null};
+            targetFlags = new BlockFlag[]{BlockFlag.generator, null};
             faceTarget = true;
             flying = true;
 
