@@ -80,6 +80,8 @@ public class StuasutTechTree {
                 });
             });
             node(StuasutBlocks.forgeT1, () -> {
+                node(StuasutBlocks.forgeT2, () -> {
+                });
                 //TODO more factories
             });
             node(StuasutBlocks.bariumWall, () -> {
@@ -100,6 +102,9 @@ public class StuasutTechTree {
                 });
                 node(StuasutBlocks.pulse, () -> {
                     node(StuasutBlocks.collapse, () -> {
+
+                    });
+                    node(StuasutBlocks.destruction, () -> {
 
                     });
                 });

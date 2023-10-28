@@ -8,6 +8,7 @@ import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
+import mindustry.entities.pattern.ShootHelix;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
@@ -72,7 +73,7 @@ public class StuasutBlocks {
     zincBridge, zincDuct, bariumDuct, itemRouter,
 
     //turrets
-    clor, togis, pulse, collapse, landAir, landAirLaser, landAirMinigun,
+    clor, togis, pulse, collapse, landAir, destruction,
 
     //units
     airFactory;
@@ -342,7 +343,82 @@ public class StuasutBlocks {
             itemCapacity = 10;
             drawer = new DrawMulti(new DrawDefault(), new DrawFlame());
         }};
-
+        forgeT2 = new MultiCrafter("forge-t2") {{
+            requirements(Category.crafting, with(StuasutItems.zinc, 140, StuasutItems.barium, 106, StuasutItems.cadmium, 80));
+            health = 80;
+            size = 3;
+            craftEffect = new MultiEffect(Fx.pointShockwave, Fx.pointShockwave, Fx.drillSteam);
+            resolvedRecipes = Seq.with(
+                    //barium recipe
+                    new Recipe(
+                            //consumes
+                            new IOEntry(
+                                    //items
+                                    Seq.with(ItemStack.with(
+                                            StuasutItems.barium, 2,
+                                            StuasutItems.cadmiumraw, 2
+                                    )),
+                                    //liquids
+                                    Seq.with(),
+                                    200f / 60f),
+                            //outputs
+                            new IOEntry(
+                                    //items
+                                    Seq.with(ItemStack.with(
+                                            StuasutItems.dencealloy, 1
+                                    )),
+                                    //liquids
+                                    Seq.with()),
+                            //craftTime
+                            4f * 60f
+                    ),
+                    //cadmium recipe
+                    new Recipe(
+                            //consumes
+                            new IOEntry(
+                                    //items
+                                    Seq.with(ItemStack.with(
+                                            StuasutItems.rheniumraw, 4
+                                    )),
+                                    //liquids
+                                    Seq.with(),
+                                    280f / 60f),
+                            //outputs
+                            new IOEntry(
+                                    //items
+                                    Seq.with(ItemStack.with(
+                                            StuasutItems.rhenium, 1
+                                    )),
+                                    //liquids
+                                    Seq.with()),
+                            //craftTime
+                            5f * 60f
+                    ),
+                    //rhenium recipe
+                    new Recipe(
+                            //consumes
+                            new IOEntry(
+                                    //items
+                                    Seq.with(ItemStack.with(
+                                            StuasutItems.antimonyraw, 4
+                                    )),
+                                    //liquids
+                                    Seq.with(),
+                                    400f / 60f),
+                            //outputs
+                            new IOEntry(
+                                    //items
+                                    Seq.with(ItemStack.with(
+                                            StuasutItems.antimony, 1
+                                    )),
+                                    //liquids
+                                    Seq.with()),
+                            //craftTime
+                            6f * 60f
+                    ));
+            itemCapacity = 12;
+            drawer = new DrawMulti(new DrawDefault(), new DrawFlame());
+        }};
         //production
 
         zinccrusher = new BurstDrill("zinc-crusher") {{
@@ -714,7 +790,7 @@ public class StuasutBlocks {
         landAir = new ItemTurret("land-air") {{
             requirements(Category.turret, with(StuasutItems.zinc, 160, StuasutItems.barium, 120, StuasutItems.bariumraw, 90));
             scaledHealth = 250;
-            reload = 80f;
+            reload = 60f;
             range = 100f;
             recoil = 2f;
             rotateSpeed = 2f;
@@ -750,19 +826,7 @@ public class StuasutBlocks {
                                 }};
                             }});
                         }};
-                    }});
-            drawer = new DrawTurret("rapu-");
-            researchCost = with(StuasutItems.zinc, 800, StuasutItems.barium, 600, StuasutItems.bariumraw, 450);
-        }};
-        landAirLaser = new ItemTurret("land-air-laser") {{
-            requirements(Category.turret, with(StuasutItems.zinc, 180, StuasutItems.cadmium, 80, StuasutItems.cadmiumraw, 85));
-            scaledHealth = 250;
-            reload = 140f;
-            range = 100f;
-            recoil = 2f;
-            rotateSpeed = 2f;
-            size = 3;
-            ammo(
+                    }},
                     StuasutItems.cadmium, new BasicBulletType() {{
                         damage = 0f;
                         lifetime = 0f;
@@ -796,19 +860,7 @@ public class StuasutBlocks {
                                 }};
                             }});
                         }};
-                    }});
-            drawer = new DrawTurret("rapu-");
-            researchCost = with(StuasutItems.zinc, 900, StuasutItems.cadmium, 400, StuasutItems.cadmiumraw, 425);
-        }};
-        landAirMinigun = new ItemTurret("land-air-minigun") {{
-            requirements(Category.turret, with(StuasutItems.zinc, 260, StuasutItems.cadmium, 80, StuasutItems.rheniumraw, 120));
-            scaledHealth = 250;
-            reload = 120f;
-            range = 100f;
-            recoil = 2f;
-            rotateSpeed = 2f;
-            size = 3;
-            ammo(
+                    }},
                     StuasutItems.rheniumraw, new BasicBulletType() {{
                         damage = 0f;
                         lifetime = 0f;
@@ -840,7 +892,42 @@ public class StuasutBlocks {
                         }};
                     }});
             drawer = new DrawTurret("rapu-");
-            researchCost = with(StuasutItems.zinc, 1300, StuasutItems.cadmium, 400, StuasutItems.rheniumraw, 600);
+            researchCost = with(StuasutItems.zinc, 800, StuasutItems.barium, 600, StuasutItems.bariumraw, 450);
+        }};
+        destruction = new ItemTurret("destruction") {{
+            requirements(Category.turret, with(StuasutItems.zinc, 2600, StuasutItems.barium, 120, StuasutItems.cadmium, 60));
+            scaledHealth = 240;
+            reload = 90f;
+            range = 280f;
+            recoil = 2f;
+            shootCone = 30f;
+            rotateSpeed = 1.9f;
+            shoot = new ShootHelix();
+            size = 3;
+            targetAir = false;
+            ammo(
+                    StuasutItems.cadmiumraw, new ArtilleryBulletType() {{
+                        damage = 0f;
+                        lifetime = 30f;
+                        splashDamage = 60;
+                        splashDamageRadius = 12;
+                        speed = 4f;
+                        width = 9f;
+                        height = 9f;
+                        fragBullets = 8;
+                        fragVelocityMin = 0.7f;
+                        fragRandomSpread = 20;
+                        fragLifeMin = 0.7f;
+                        fragBullet = new BasicBulletType() {{
+                            damage = 30f;
+                            speed = 2f;
+                            lifetime = 60f;
+                            width = 5f;
+                            height = 8f;
+                        }};
+                    }});
+            drawer = new DrawTurret("rapu-");
+            researchCost = with(StuasutItems.zinc, 4000, StuasutItems.barium, 360, StuasutItems.cadmium, 230);
         }};
         //units
         airFactory = new UnitFactory("air-fuck") {{

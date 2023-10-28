@@ -4,24 +4,29 @@ import arc.Core;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
+import arc.struct.*;
 import arc.util.*;
 import arc.util.io.*;
 import mindustry.content.*;
+import mindustry.entities.*;
+import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.logic.*;
 import mindustry.world.meta.*;
 import mindustry.world.blocks.storage.*;
+import stus.graphics.*;
 
 import static mindustry.Vars.*;
 
 public class RegenCore extends CoreBlock {
-    public final int timerUse = timers++;
-    public Color baseColor = Color.valueOf("84f491");
-    public TextureRegion topRegion;
-    public float reload = 250f;
-    public float range = 60f;
-    public float healPercent = 12f;
-    public float useTime = 400f;
+    static final float refreshInterval = 6f;
+
+    public float range = 80f;
+    public Color circleColor = RapuPal.rushCol, glowColor = RapuPal.rushCol.cpy().a(0.5f);
+    public float circleSpeed = 120f, circleStroke = 3f, polyRad = 5f, polySpinScl = 0.8f, glowMag = 0.5f, glowScl = 8f;
+    public int polySides = 6;
+    public float damage = 1;
+    public TextureRegion glow;
 
     public RegenCore(String name){
         super(name);
@@ -33,97 +38,102 @@ public class RegenCore extends CoreBlock {
         lightRadius = 50f;
         suppressable = true;
         envEnabled |= Env.space;
+        buildType = RegenCoreBuild::new;
     }
 
-    @Override
-    public boolean outputsItems(){
-        return false;
-    }
     @Override
     public void setStats(){
-        stats.timePeriod = useTime;
         super.setStats();
 
-        stats.add(Stat.repairTime, (int)(100f / healPercent * reload / 60f), StatUnit.seconds);
         stats.add(Stat.range, range / tilesize, StatUnit.blocks);
-    }
-    @Override
-    public void load() {
-        super.load();
-        topRegion = Core.atlas.find(this.name + "-top");
     }
 
     @Override
     public void drawPlace(int x, int y, int rotation, boolean valid){
         super.drawPlace(x, y, rotation, valid);
 
-        Drawf.dashCircle(x * tilesize + offset, y * tilesize + offset, range, baseColor);
-
-        indexer.eachBlock(player.team(), x * tilesize + offset, y * tilesize + offset, range, other -> true, other -> Drawf.selected(other, Tmp.c1.set(baseColor).a(Mathf.absin(4f, 1f))));
+        Drawf.dashCircle(x * tilesize + offset, y * tilesize + offset, range, Pal.placing);
+    }
+    @Override
+    public void load() {
+        super.load();
+        glow = Core.atlas.find(this.name + "-glow");
     }
 
     public class RegenCoreBuild extends CoreBuild implements Ranged {
-        public float heat, charge = Mathf.random(reload), smoothEfficiency;
+        public float refresh = Mathf.random(refreshInterval);
+        public float warmup = 0f;
+        public float totalProgress = 0f;
+        public Seq<Unit> targets = new Seq<>();
+        public Seq<Unit> targetsAlly = new Seq<>();
 
         @Override
-        public float range() {
+        public void updateTile(){
+
+            if(potentialEfficiency > 0 && (refresh += Time.delta) >= refreshInterval){
+                targets.clear();
+                targetsAlly.clear();
+                refresh = 0f;
+                Units.nearbyEnemies(team, x, y, range, u -> {
+                    targets.add(u);
+                });
+                Units.nearby(team, x, y, range, u -> {
+                    targetsAlly.add(u);
+                });
+            }
+
+            boolean any = false;
+            if(efficiency > 0){
+                for(var target : targets){
+                    target.damage(damage);
+                    any = true;
+                }
+                for(var targetA : targetsAlly){
+                    targetA.heal(damage);
+                    any = true;
+                }
+            }
+
+            warmup = Mathf.lerpDelta(warmup, any ? efficiency : 0f, 0.08f);
+            totalProgress += Time.delta / circleSpeed;
+        }
+
+        @Override
+        public boolean shouldConsume(){
+            return targets.size > 0;
+        }
+
+        @Override
+        public void draw(){
+            super.draw();
+
+            if(warmup <= 0.001f) return;
+
+            Draw.z(Layer.effect);
+            float mod = totalProgress % 1f;
+            Draw.color(circleColor);
+            Lines.stroke(circleStroke * (1f - mod) * warmup);
+            Lines.circle(x, y, range * mod);
+            Draw.color(circleColor);
+            Fill.poly(x, y, polySides, polyRad * warmup, Time.time / polySpinScl);
+            Draw.reset();
+
+            Drawf.additive(glow, glowColor, warmup * (1f - glowMag + Mathf.absin(Time.time, glowScl, glowMag)), x, y, 0f, Layer.blockAdditive);
+        }
+
+        @Override
+        public float range(){
             return range;
         }
 
         @Override
-        public void updateTile() {
-            boolean canHeal = !checkSuppression();
-
-            smoothEfficiency = Mathf.lerpDelta(smoothEfficiency, efficiency, 0.08f);
-            heat = Mathf.lerpDelta(heat, efficiency > 0 && canHeal ? 1f : 0f, 0.08f);
-            charge += heat * delta();
-
-            if (optionalEfficiency > 0 && timer(timerUse, useTime) && canHeal) {
-                consume();
-            }
-
-            if (charge >= reload && canHeal) {
-                float realRange = range;
-                charge = 0f;
-
-                indexer.eachBlock(this, realRange, b -> b.damaged() && !b.isHealSuppressed(), other -> {
-                    other.heal(other.maxHealth() * healPercent / 100f * efficiency);
-                    other.recentlyHealed();
-                    Fx.healBlockFull.at(other.x, other.y, other.block.size, baseColor, other.block);
-                });
-            }
+        public float warmup(){
+            return warmup;
         }
 
         @Override
-        public double sense(LAccess sensor) {
-            if (sensor == LAccess.progress) return Mathf.clamp(charge / reload);
-            return super.sense(sensor);
-        }
-
-        @Override
-        public void drawSelect() {
-            float realRange = range;
-
-            indexer.eachBlock(this, realRange, other -> true, other -> Drawf.selected(other, Tmp.c1.set(baseColor).a(Mathf.absin(4f, 1f))));
-
-            Drawf.dashCircle(x, y, realRange, baseColor);
-        }
-
-        @Override
-        public void drawLight() {
-            Drawf.light(x, y, lightRadius * smoothEfficiency, baseColor, 0.7f * smoothEfficiency);
-        }
-
-        @Override
-        public void write(Writes write) {
-            super.write(write);
-            write.f(heat);
-        }
-
-        @Override
-        public void read(Reads read, byte revision) {
-            super.read(read, revision);
-            heat = read.f();
+        public void drawSelect(){
+            Drawf.dashCircle(x, y, range, Pal.placing);
         }
     }
 }

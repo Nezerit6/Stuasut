@@ -13,7 +13,7 @@ public class StuasutUnits {
     public static UnitType
 
     //units
-    navicula,
+    navicula, frontis,
 
     //core units
     sunrise;
@@ -101,6 +101,37 @@ public class StuasutUnits {
         weapon.y = y;
         return weapon;
     }
+    public static Weapon getFrontisWeapon(float x, float y){
+        Weapon weapon = new Weapon("stus-w1"){{
+            reload = 50f;
+            rotate = false;
+            shootCone = 20f;
+            mirror = false;
+            bullet = new LaserBoltBulletType(4f, 30){{
+                width = 4f;
+                height = 9f;
+
+                lifetime = 40f;
+                pierceArmor = true;
+                pierce = true;
+                pierceCap = 2;
+                pierceBuilding = true;
+
+                trailLength = 14;
+                trailWidth = 2f;
+                trailSinScl = 2f;
+                trailSinMag = 0.5f;
+                trailEffect = Fx.none;
+                trailColor = Color.valueOf("FF6F89FF");
+
+                frontColor = Color.valueOf("FFFFFF");
+                backColor = Color.valueOf("D85876FF");
+            }};
+        }};
+        weapon.x = x;
+        weapon.y = y;
+        return weapon;
+    }
     public static void load(){
 
         navicula = new UnitType("navicula"){{
@@ -125,6 +156,28 @@ public class StuasutUnits {
             itemCapacity = 10;
 
             weapons.add(getNaviculaWeapon(0, -2));
+        }};
+        frontis = new UnitType("frontis"){{
+            health = 230;
+            hitSize = 17;
+            outlineColor = RapuPal.rapuOutline;
+            constructor = UnitEntity::create;
+
+            speed = 2.1f;
+            rotateSpeed = 5.4f;
+            drag = 0.05f;
+            accel = 0.05f;
+
+            targetFlags = new BlockFlag[]{BlockFlag.factory, null};
+            faceTarget = true;
+            flying = true;
+
+            engineOffset = 7f;
+            engineSize = 2;
+            lowAltitude = true;
+            itemCapacity = 20;
+
+            weapons.add(getNaviculaWeapon(3.5f, -4.75f), getNaviculaWeapon(-3.5f, -4.75f), getFrontisWeapon(3.5f, 5.5f), getFrontisWeapon(-3.5f, 5.5f));
         }};
         sunrise = new UnitType("sunrise"){{
            aiController = BuilderAI::new;
