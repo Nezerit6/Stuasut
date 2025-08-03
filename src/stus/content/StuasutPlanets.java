@@ -6,7 +6,6 @@ import mindustry.content.*;
 import mindustry.game.*;
 import mindustry.graphics.g3d.*;
 import mindustry.type.*;
-import mindustry.world.meta.*;
 import stus.planets.*;
 
 public class StuasutPlanets {
@@ -14,12 +13,10 @@ public class StuasutPlanets {
     rapu;
 
     public static void load() {
-        Planets.serpulo.hiddenItems.addAll(StuasutItems.rapuItems).removeAll(Items.serpuloItems);
-        Planets.erekir.hiddenItems.addAll(StuasutItems.rapuItems).removeAll(Items.erekirItems);
         rapu = new Planet("rapu", Planets.sun, 1f, 3) {{
             defaultCore = StuasutBlocks.coreDawn;
             sectorSeed = 3;
-            generator = new RapuPlanetGeneratorV2();
+            generator = new RapuPlanetGenerator();
             meshLoader = () -> new HexMesh(this, 5);
             cloudMeshLoader = () -> new MultiMesh(
                     new HexSkyMesh(this, 6, 0.1f, 0.23f, 5, Color.valueOf("393939").a(0.75f), 2, 0.45f, 1.13f, 0.45f),
@@ -43,6 +40,5 @@ public class StuasutPlanets {
             };
             unlockedOnLand.add(StuasutBlocks.coreDawn);
         }};
-        rapu.hiddenItems.addAll(Vars.content.items()).removeAll(StuasutItems.rapuItems);
     }
 }

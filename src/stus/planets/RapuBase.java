@@ -81,7 +81,7 @@ public class RapuBase {
             }
             schem.tiles.removeAll(s -> s.block.buildVisibility == BuildVisibility.sandboxOnly);
 
-            part.tier = schem.tiles.sumf(s -> Mathf.pow(s.block.buildCost / s.block.buildCostMultiplier, 1.4f));
+            part.tier = schem.tiles.sumf(s -> Mathf.pow(s.block.buildTime / s.block.buildCostMultiplier, 1.4f));
 
             if(part.core != null){
                 coreParts.add(part);
@@ -111,9 +111,8 @@ public class RapuBase {
     public static Block getDifficultyWall(int size, float difficulty){
         Seq<Block> wallsSmall = content.blocks().select(b -> b instanceof Wall && b.size == size
                 && !b.insulated && b.buildVisibility == BuildVisibility.shown
-                && !(b instanceof Door)
-                && !(Structs.contains(b.requirements, i -> state.rules.hiddenBuildItems.contains(i.item))));
-        wallsSmall.sort(b -> b.buildCost);
+                && !(b instanceof Door));
+        wallsSmall.sort(b -> b.buildTime);
         return wallsSmall.getFrac(difficulty * 0.91f);
     }
 

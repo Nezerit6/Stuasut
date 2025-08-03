@@ -2,8 +2,7 @@ displayName: "Stuasut"
 name: "stus"
 author: "Eternity"
 main: "stus.Stuasut"
-dependencies: ["multi-crafter"]
 description: "no"
 version: 0.1
-minGameVersion: 140.3
+minGameVersion: 149
 java: true

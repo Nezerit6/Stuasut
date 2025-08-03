@@ -2,20 +2,22 @@ apply plugin: "java"
 
 version '1.0'
 
-targetCompatibility = 8
-sourceCompatibility = JavaVersion.VERSION_16
-
 sourceSets.main.java.srcDirs = ["src"]
 
 repositories{
     mavenCentral()
-    maven{ url "https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository" }
+    maven { url "https://maven.xpdustry.com/mindustry" }
     maven{ url 'https://www.jitpack.io' }
+}
+
+java{
+    targetCompatibility = 8
+    sourceCompatibility = JavaVersion.VERSION_17
 }
 
 ext{
     //the build number that this mod is made for
-    mindustryVersion = 'v146'
+    mindustryVersion = 'v147.1'
     jabelVersion = "93fde537c7"
     sdkRoot = System.getenv("ANDROID_HOME") ?: System.getenv("ANDROID_SDK_ROOT")
 }
@@ -31,8 +33,6 @@ dependencies{
     compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
     compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
 
-    implementation "com.github.liplum:MultiCrafterLib:v1.7"
-
     annotationProcessor "com.github.Anuken:jabel:$jabelVersion"
 }
 
@@ -44,7 +44,6 @@ configurations.all{
         }
     }
 }
-
 
 task jarAndroid{
     dependsOn "jar"
@@ -66,7 +65,7 @@ task jarAndroid{
 }
 
 jar{
-    archiveFileName = "${project.archivesBaseName}Desktop.jar"
+    archiveFileName = "${base.archivesBaseName}Desktop.jar"
 
     from{
         configurations.runtimeClasspath.collect{ it.isDirectory() ? it : zipTree(it) }
@@ -84,7 +83,7 @@ jar{
 task deploy(type: Jar){
     dependsOn jarAndroid
     dependsOn jar
-    archiveFileName = "${project.archivesBaseName}.jar"
+    archiveFileName = "${base.archivesBaseName}.jar"
 
     from{ [zipTree("$buildDir/libs/${project.archivesBaseName}Desktop.jar"), zipTree("$buildDir/libs/${project.archivesBaseName}Android.jar")] }
 

@@ -15,7 +15,7 @@ public class RapuWaves {
     public static Seq<SpawnGroup> generate(float difficulty, Rand rand, boolean attack, boolean air, boolean naval) {
         UnitType[][] species = {
                 {dagger, mace, fortress, scepter, reign},
-                {navicula,navicula,navicula,navicula,navicula}
+                {navicula,frontis,frontis,frontis,frontis}
         };
 
         if(air){
